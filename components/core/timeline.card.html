@@ -1,0 +1,18 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Timeline Item" -->
+<link rel="stylesheet" href="../../styles.css">
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { TimelineItem } = window.Ledger;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{padding:'0 24px',background:'var(--surface-page)'}}>
+    <TimelineItem dates="2021 – 2024" location="Mountain View, CA" role="Head of Sales Enablement" org="Elastic"
+      summary="Built Elastic's global enablement organization from the ground up, delivering $493.9M in pipeline impact."
+      highlights={["Co-developed SalesGPT, launched before ChatGPT existed", "Compressed RFP response time from ~2 weeks to ~4 hours"]}
+      stats={[{value:"72%",label:"Win Rate"},{value:"3×",label:"Larger Deals"}]} />
+  </div>
+);
+</script>

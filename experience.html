@@ -1,0 +1,127 @@
+<!-- @dsCard group="Portfolio" viewport="1200x900" subtitle="Experience overview, links to the detailed page" name="Site — Experience" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+function NavBar({ name, links = [], activeHref }) {
+  return (
+    <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid var(--border-default)", fontFamily: "var(--font-sans)" }}>
+      <a href="index.html" style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-subtitle)", color: "var(--text-primary)", textDecoration: "none" }}>{name}</a>
+      <div style={{ display: "flex", gap: 28 }}>
+        {links.map((l) => (
+          <a key={l.href} href={l.href} style={{ fontSize: "var(--size-small)", fontWeight: 500, color: l.href === activeHref ? "var(--text-primary)" : "var(--text-secondary)", textDecoration: "none", borderBottom: l.href === activeHref ? "2px solid var(--accent)" : "2px solid transparent", paddingBottom: 4 }}>{l.label}</a>
+        ))}
+      </div>
+    </nav>
+  );
+}
+function SectionHeading({ eyebrow, title }) {
+  return (
+    <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+      <div>
+        {eyebrow && <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--size-micro)", letterSpacing: "var(--tracking-widest)", textTransform: "uppercase", color: "var(--highlight)", marginBottom: 10 }}>{eyebrow}</div>}
+        <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-display-1)", fontWeight: 500, color: "var(--text-primary)", letterSpacing: "var(--tracking-tight)" }}>{title}</div>
+      </div>
+      <a href="experience-detail.html" style={{ fontSize: "var(--size-small)", fontWeight: 600, color: "var(--link)", textDecoration: "none" }}>View detailed experience →</a>
+    </div>
+  );
+}
+function Milestone({ year, label, lede, description }) {
+  return (
+    <div style={{ display: "flex", gap: 18, padding: "18px 20px", background: "var(--surface-card)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)" }}>
+      <div style={{ flexShrink: 0, fontFamily: "var(--font-mono)", fontSize: "var(--size-micro)", letterSpacing: "var(--tracking-wide)", color: "var(--accent)", paddingTop: 2, width: 96 }}>
+        {year}<div style={{ color: "var(--text-tertiary)", marginTop: 2 }}>{label}</div>
+      </div>
+      <p style={{ margin: 0, fontSize: "var(--size-small)", color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)" }}>
+        <strong style={{ color: "var(--text-primary)" }}>{lede}: </strong>{description}
+      </p>
+    </div>
+  );
+}
+function TimelineItem({ org, location, dates, role, summary, highlights = [], stats = [] }) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: 24, padding: "32px 0", borderTop: "1px solid var(--border-default)", fontFamily: "var(--font-sans)" }}>
+      <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--size-micro)", letterSpacing: "var(--tracking-wide)", textTransform: "uppercase", color: "var(--text-tertiary)", paddingTop: 4 }}>
+        {dates}
+        <div style={{ marginTop: 6 }}>{location}</div>
+      </div>
+      <div>
+        <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-title)", color: "var(--text-primary)" }}>{role}</div>
+        <div style={{ fontSize: "var(--size-small)", color: "var(--accent)", fontWeight: 600, marginTop: 2 }}>{org}</div>
+        {summary && <p style={{ fontSize: "var(--size-body)", color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)", marginTop: 12, maxWidth: 640 }}>{summary}</p>}
+        {highlights.length > 0 && (
+          <ul style={{ margin: "14px 0 0", paddingLeft: 18, display: "flex", flexDirection: "column", gap: 6 }}>
+            {highlights.map((h, i) => <li key={i} style={{ fontSize: "var(--size-small)", color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)" }}>{h}</li>)}
+          </ul>
+        )}
+        {stats.length > 0 && (
+          <div style={{ display: "flex", gap: 32, marginTop: 20 }}>
+            {stats.map((s, i) => (
+              <div key={i}>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-subtitle)", color: "var(--accent)" }}>{s.value}</div>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "var(--tracking-wide)", textTransform: "uppercase", color: "var(--text-tertiary)", marginTop: 2 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        {org === "Elastic" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
+            <Milestone year='2021' label='"Good Enough"' lede="Standardized Onboarding Launched" description="Implemented a core operating model, a rhythm of enablement, and detailed playbooks, the foundation behind a 66% CSM ramp reduction, 23% for Enterprise AEs, and 15% for SDR & Commercial roles." />
+            <Milestone year='2022' label='"Good"' lede="Standards & Methodology" description="Rolled out enablement standards, new certifications, and a unified sales methodology, lifting new-hire productivity 15.6%." />
+            <Milestone year='2023' label='"Great"' lede="SalesGPT, Agentic AI Launch" description="Co-developed and launched SalesGPT (combining Elastic's enterprise search technology with LLMs), plus advanced coaching labs and outreach programs to refine complex sales skills; work that began before the original ChatGPT launch." />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const navLinks = [
+  { href: "index.html", label: "Home" },
+  { href: "experience.html", label: "Experience" },
+  { href: "expertise.html", label: "Expertise" },
+  { href: "books/index.html", label: "Books" },
+  { href: "index.html#contact", label: "Contact" },
+];
+
+const experience = [
+  { dates: "Mar 2026 – Present", location: "Raleigh-Durham-Chapel Hill Area", role: "Senior Manager, AI Strategy & Future of Work", org: "Cisco Systems",
+    summary: "Driving AI-for-internal-use strategy across Cisco's People, Policy & Purpose organization, partnering with AI leads and process owners to improve human capability and automate workflows.",
+    highlights: ["Sense-making at scale: accelerating decision quality across complex, cross-functional work", "Rapid pilot-and-iterate loops with measurable impact"] },
+  { dates: "Nov 2024 – Nov 2025", location: "Ottawa, Canada (Remote)", role: "Head of Global Support Enablement / Sales Onboarding", org: "Shopify",
+    summary: "Built Shopify's first AI-enhanced onboarding system spanning Sales Onboarding and Global Tech Support Enablement amid a company restructuring.",
+    highlights: ["3-phase onboarding transformation across 7+ global cohorts", "250+ hires ramped in 7 months using NotebookLM, LibreChat, and performance agents"],
+    stats: [{ value: "+22%", label: "CX Score Gain" }, { value: "82%", label: "Readiness" }] },
+  { dates: "2021 – 2024", location: "Mountain View, CA", role: "Head of Sales Enablement", org: "Elastic",
+    summary: "Built Elastic's global enablement organization from the ground up over a three-year run from \u201cgood enough\u201d to great, delivering $493.9M in pipeline impact.",
+    highlights: ["Co-developed and launched SalesGPT, agentic AI work that began before ChatGPT existed", "Compressed RFP response time from ~2 weeks to ~4 hours"],
+    stats: [{ value: "72%", label: "Win Rate" }, { value: "3×", label: "Larger Deals" }] },
+  { dates: "Dec 2019 – Mar 2021", location: "Raleigh-Durham-Chapel Hill Area", role: "Director, Customer Experience Training & Enablement", org: "Avalara",
+    summary: "Owned learning design, development, delivery, and performance support for all Customer Account Managers, support staff, and Go-Live consultants.",
+    highlights: ["Standard operating model lifted team productivity 18%", "Transformed training from lecture to scenario-based design"] },
+  { dates: "2017 – 2019", location: "Charlotte, NC", role: "Director, Learning Experience", org: "Charter Communications (Spectrum)",
+    summary: "Owned enterprise learning strategy for 30,000+ call center agents, leading 15 learning strategists.",
+    highlights: ["Spectrum Mobile launch: 6 curricula, 20+ e-learnings, 12 simulations in under 9 months", "+10% First Call Resolution, $630K annual impact"] },
+  { dates: "2006 – 2017", location: "Charlotte, NC", role: "Multiple Leadership Roles, Learning & Development", org: "Cisco Systems",
+    summary: "11 years in progressively senior roles leading sales enablement, career strategy, and learning technology, including Cisco's first immersive 3D learning program.",
+    highlights: ["Cisco Sales Genius: $3.9B impact over five years, $17M reduction in training spend", "Career Navigator: interactive \u201cCareer Lattice\u201d for internal mobility"] },
+];
+
+function Page() {
+  return (
+    <div style={{ background: "var(--surface-page)", fontFamily: "var(--font-sans)", color: "var(--text-primary)" }}>
+      <div style={{ maxWidth: "var(--container-wide)", margin: "0 auto", padding: "0 40px" }}>
+        <NavBar name="Barry Shields" activeHref="experience.html" links={navLinks} />
+        <section style={{ padding: "56px 0 72px" }}>
+          <SectionHeading eyebrow="Experience" title="Professional History" />
+          <div>{experience.map((e, i) => <TimelineItem key={i} {...e} />)}</div>
+        </section>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Page />);
+</script>

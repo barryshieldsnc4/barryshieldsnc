@@ -1,0 +1,18 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Book Card" -->
+<link rel="stylesheet" href="../../styles.css">
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { BookCard } = window.Ledger;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{padding:24,background:'var(--surface-page)',display:'grid',gridTemplateColumns:'repeat(2, minmax(0, 1fr))',gap:20,maxWidth:520}}>
+    <BookCard status="Published" title="Corporate IQ for Managers" subtitle="Barry Shields"
+      description="A field guide to leading teams through the AI transition." cover={<div style={{width:'100%',height:'100%',background:'var(--surface-accent)'}} />} />
+    <BookCard status="In Progress" title="Untitled — Book Two" cta="Notify me"
+      description="Cover and details coming soon." cover={<div style={{width:'100%',height:'100%',background:'var(--surface-card)'}} />} />
+  </div>
+);
+</script>

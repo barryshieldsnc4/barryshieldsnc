@@ -1,0 +1,212 @@
+<!-- @dsCard group="Portfolio" viewport="1200x1400" subtitle="Core Expertise: signature differentiators + full skills taxonomy by domain" name="Site — Expertise" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+function NavBar({ name, links = [], activeHref }) {
+  return (
+    <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid var(--border-default)", fontFamily: "var(--font-sans)" }}>
+      <a href="index.html" style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-subtitle)", color: "var(--text-primary)", textDecoration: "none" }}>{name}</a>
+      <div style={{ display: "flex", gap: 28 }}>
+        {links.map((l) => (
+          <a key={l.href} href={l.href} style={{ fontSize: "var(--size-small)", fontWeight: 500, color: l.href === activeHref ? "var(--text-primary)" : "var(--text-secondary)", textDecoration: "none", borderBottom: l.href === activeHref ? "2px solid var(--accent)" : "2px solid transparent", paddingBottom: 4 }}>{l.label}</a>
+        ))}
+      </div>
+    </nav>
+  );
+}
+function SectionHeading({ eyebrow, title, subtitle }) {
+  return (
+    <div style={{ marginBottom: 32 }}>
+      {eyebrow && <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--size-micro)", letterSpacing: "var(--tracking-widest)", textTransform: "uppercase", color: "var(--highlight)", marginBottom: 10 }}>{eyebrow}</div>}
+      <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-display-1)", fontWeight: 500, color: "var(--text-primary)", letterSpacing: "var(--tracking-tight)" }}>{title}</div>
+      {subtitle && <p style={{ marginTop: 14, maxWidth: 720, fontSize: "var(--size-body)", color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)" }}>{subtitle}</p>}
+    </div>
+  );
+}
+function DifferentiatorCard({ n, skill, evidence, why }) {
+  return (
+    <div style={{ background: "var(--surface-accent)", border: "1px solid var(--accent-soft)", borderRadius: "var(--radius-md)", padding: "24px 28px", display: "flex", gap: 20 }}>
+      <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-title)", color: "var(--accent)", flexShrink: 0, width: 28 }}>{n}</div>
+      <div>
+        <div style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: "var(--size-body)", color: "var(--text-primary)" }}>{skill}</div>
+        <p style={{ fontSize: "var(--size-small)", color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)", marginTop: 8 }}><strong style={{ color: "var(--text-primary)" }}>Evidence: </strong>{evidence}</p>
+        <p style={{ fontSize: "var(--size-small)", color: "var(--accent-strong)", lineHeight: "var(--leading-relaxed)", marginTop: 6 }}>{why}</p>
+      </div>
+    </div>
+  );
+}
+function DomainSection({ title, rows }) {
+  return (
+    <div style={{ marginTop: 40 }}>
+      <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-title)", color: "var(--text-primary)", marginBottom: 16, paddingBottom: 12, borderBottom: "1px solid var(--border-default)" }}>{title}</div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {rows.map((r, i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "320px 1fr", gap: 24, padding: "14px 0", borderBottom: i < rows.length - 1 ? "1px solid var(--border-default)" : "none" }}>
+            <div style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "var(--size-small)", color: "var(--text-primary)" }}>{r.skill}</div>
+            <div style={{ fontSize: "var(--size-small)", color: "var(--text-secondary)", lineHeight: "var(--leading-relaxed)" }}>{r.evidence}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+function ToolChip({ children }) {
+  return <span style={{ display: "inline-flex", fontFamily: "var(--font-sans)", fontSize: "var(--size-small)", fontWeight: 500, padding: "5px 12px", borderRadius: "var(--radius-pill)", background: "var(--surface-card)", border: "1px solid var(--border-default)", color: "var(--text-secondary)" }}>{children}</span>;
+}
+
+const navLinks = [
+  { href: "index.html", label: "Home" },
+  { href: "experience.html", label: "Experience" },
+  { href: "expertise.html", label: "Expertise" },
+  { href: "books/index.html", label: "Books" },
+  { href: "index.html#contact", label: "Contact" },
+];
+
+const differentiators = [
+  { skill: "Pre-ChatGPT agentic AI in production", evidence: "Co-developed and launched SalesGPT at Elastic (Elastic enterprise search + LLMs), work begun before the original ChatGPT launch.", why: "Almost no L&D or content leader can claim production LLM deployment before Nov 2022 — a provable first-mover credential." },
+  { skill: "AI-native learning system architecture", evidence: "Shopify's first AI-enhanced onboarding system across Sales and Support; 250+ hires ramped via NotebookLM, LibreChat, and performance agents in 7 months.", why: "Designing whole learning systems around AI, not bolting AI onto courseware." },
+  { skill: "Encoding craft into scalable systems", evidence: "AI agents built for every component of sales onboarding; reusable frameworks, AI Agent Directory, competency-based badging — durable assets that outlived headcount cuts.", why: "The rare shift from \u201cI am the quality bar\u201d to \u201cthe system carries the quality bar.\u201d" },
+  { skill: "Content ownership end to end at global scale", evidence: "Owned intake, drafting, AI-assisted production, measurement, and iteration for a 2,000+ person global support org; 30,000+ agents at Charter; 40,000+ learners total.", why: "Full lifecycle ownership, not a slice of it, across developer, enterprise, and frontline audiences." },
+  { skill: "AI-measurable learning outcomes", evidence: "Release 3 outperformed Release 1 by +22% CX by Week 2; 82% readiness, 88% recommend; 161K+ tickets analyzed by AI to drive curriculum redesign.", why: "Closes the loop most content teams never close: proving content actually teaches, then feeding that signal back into production." },
+  { skill: "Building through disruption", evidence: "Expanded scope amid a ~90% L&D headcount cut at Shopify; replaced $77M of fragmented training with one platform at Cisco ($3.9B five-year impact).", why: "Demonstrated ability to lead teams through significant structural change." },
+];
+
+const domains = [
+  { title: "Content & Curriculum Strategy", rows: [
+    { skill: "End-to-end content lifecycle ownership", evidence: "Shopify Global Support Enablement: intake through drafting, AI-assisted production, measurement, iteration." },
+    { skill: "Multi-format curriculum design", evidence: "Spectrum Mobile launch: 6 curricula, 20+ e-learnings, 12 simulations in under 9 months." },
+    { skill: "Multi-audience content strategy", evidence: "Elastic internal + partner parity system; Cisco sales, leadership, and technical audiences; Shopify sellers and support agents." },
+    { skill: "Global onboarding & everboarding architecture", evidence: "7+ global cohorts at Shopify; enterprise onboarding rebuild across all lines of business at Charter." },
+    { skill: "Content prioritization and intake systems", evidence: "Built the operating systems (intake, prioritization, drafting, review, launch) that let content teams ship at product-release cadence." },
+    { skill: "Role-based learning path design", evidence: "Standardized role-based learning paths at Shopify; Cisco Sales Genius role-based platform." },
+    { skill: "Content durability and regeneration strategy", evidence: "Durable onboarding infrastructure and reusable frameworks designed to survive org change and model releases." },
+    { skill: "Certification and accreditation program design", evidence: "Elastic Partner Academy: 98% accreditation rate, 73% jump in accreditations after refresh." },
+    { skill: "Curriculum-to-business-outcome alignment", evidence: "Dashboards connecting training signals to operational outcomes at Charter; $493.9M pipeline impact at Elastic." },
+  ]},
+  { title: "Learning Science & Instructional Design Craft", rows: [
+    { skill: "Instructional systems design", evidence: "M.S. Instructional Systems, Florida State University." },
+    { skill: "Scenario-based and simulation learning design", evidence: "Avalara lecture-to-scenario transformation; 12 simulations for Spectrum Mobile; Cisco New Team Leader realistic simulations." },
+    { skill: "Competency modeling and readiness assessment", evidence: "Competency-based badging and readiness assessments driving 82% readiness at Shopify." },
+    { skill: "Behavioral coaching and soft-skills intervention design", evidence: "Behavioral coaching and soft-skills interventions credited in Shopify CX score gains." },
+    { skill: "Performance-first learning design", evidence: "Career throughline: moving orgs from training-first to performance-first with outcome-tied metrics." },
+    { skill: "Learning personalization at scale", evidence: "AI-personalized onboarding for 250+ hires with real-time learning diagnostics." },
+    { skill: "Immersive and emerging-medium learning", evidence: "Cisco's first immersive 3D learning program." },
+    { skill: "Editorial standards and quality bar governance", evidence: "Enablement standards and certifications at Elastic; Customer Service Learning Standards at Charter." },
+    { skill: "Adult learning for technical and non-technical audiences", evidence: "IBM Watson Discovery joint enablement; frontline agents through enterprise AEs." },
+  ]},
+  { title: "AI-Powered Content Production & Agentic Systems", rows: [
+    { skill: "Agentic AI design, build, and deployment for learning", evidence: "AI agents for every component of sales onboarding; coached team on designing, building, deploying agentic AI." },
+    { skill: "LLM + enterprise search product co-development", evidence: "SalesGPT: Elastic search technology combined with LLMs." },
+    { skill: "AI-assisted drafting, review, and maintenance workflows", evidence: "NotebookLM and Perplexity workflows; LibreChat agents; human + AI review standards." },
+    { skill: "Human-in-the-loop quality standards", evidence: "Explicit human + AI review standards protecting craft while accelerating production." },
+    { skill: "AI workflow automation across toolchains", evidence: "Gumloop automation across Seismic, Slack, Google Meet, and task management; 5 FTEs to 3, 6+ hours/week saved." },
+    { skill: "AI-driven insight mining at scale", evidence: "161K+ tickets analyzed to surface merchant pain points and drive curriculum redesign." },
+    { skill: "Real-time translation and localization via AI", evidence: "EMEA real-time translation saving 6+ hours/week per team." },
+    { skill: "AI-compressed production cycles", evidence: "RFP response time from ~2 weeks to ~4 hours." },
+    { skill: "Teaching AI fluency to end users", evidence: "Taught sellers and support agents to use AI for their own productivity gains." },
+    { skill: "Rapid pilot-and-iterate experimentation loops", evidence: "Cisco charter: faster hypothesis generation, lower-cost experimentation, measurable impact." },
+  ]},
+  { title: "Learning Measurement & Performance Analytics", rows: [
+    { skill: "Ramp-to-productivity measurement and reduction", evidence: "-66% CSM ramp, -23% Enterprise AE ramp at Elastic." },
+    { skill: "Release-over-release performance benchmarking", evidence: "Release 3 vs. Release 1 (+22%) and Release 2 (+8%) CX comparison by Week 2." },
+    { skill: "Revenue and pipeline attribution for enablement", evidence: "$493.9M program-driven pipeline impact; 72% win rate; 3\u00d7 larger deal sizes." },
+    { skill: "Operational KPI improvement via learning", evidence: "+10% FCR, 90,000 additional calls, $630K annual impact at Charter; -78% Tier 3 escalations, +17% CSAT at Avalara." },
+    { skill: "Learning NPS and experience measurement", evidence: "+56 NPS for learning materials at Avalara; 88% recommend at Shopify." },
+    { skill: "Cost-of-learning optimization", evidence: "$17M training spend reduction at Cisco; $77M fragmented spend consolidated." },
+    { skill: "Signal-to-content feedback loops", evidence: "Measuring whether content teaches, then feeding signal back into what gets made next." },
+  ]},
+  { title: "Content Operations & Production Systems", rows: [
+    { skill: "Content production engine design", evidence: "Intake, prioritization, drafting, review, launch operating systems shipping at product cadence." },
+    { skill: "High-velocity delivery under live conditions", evidence: "3–5 live pivots/day during MVP launches; 75+ live practice sessions inside 48 hours." },
+    { skill: "Phased transformation execution", evidence: "3-phase MVP, AI integration, optimization onboarding transformation at Shopify." },
+    { skill: "Operating cadence and governance (MBR/QBR)", evidence: "MBR/QBR cadence at Charter driving execution and stakeholder alignment." },
+    { skill: "Learning technology infrastructure and platform strategy", evidence: "Cisco learning technology infrastructure; Seismic assignment automation; multi-system friction removal." },
+    { skill: "Reusable asset and framework architecture", evidence: "AI Agent Directory, playbooks, Partner Eden demo environment, standard operating models at three companies." },
+    { skill: "BPO and vendor enablement operations", evidence: "Redesigned onboarding for outsourced AEs to increase independence and reduce re-training cycles." },
+  ]},
+  { title: "Enablement & Go-to-Market", rows: [
+    { skill: "Global sales enablement org building (zero to one)", evidence: "Built Elastic's global enablement org from the ground up over a three-year run." },
+    { skill: "Sales methodology and standards rollout", evidence: "Unified sales methodology lifting new-hire productivity 15.6%." },
+    { skill: "Challenger\u2122 methodology embedding", evidence: "Challenger embedded across all Shopify onboarding programs." },
+    { skill: "Partner and channel enablement at parity", evidence: "Partner enablement system on parity with internal seller experience; accreditations aligned to Security and Observability solutions." },
+    { skill: "Joint GTM and alliance enablement", evidence: "Trained IBM's sales team to sell IBM Watson Discovery powered by Elastic." },
+    { skill: "Industry-specific and account-tiered messaging", evidence: "Account tiering and industry-contextualized product knowledge at Elastic." },
+    { skill: "Customer experience and support enablement", evidence: "Avalara CX training ownership; Shopify 2,000+ person support org." },
+  ]},
+  { title: "Leadership, Org Design & People Development", rows: [
+    { skill: "Managing leads and multi-layer content teams", evidence: "15 learning strategists at Charter; 8 facilitators + 22 mentors + 200+ learners at Shopify." },
+    { skill: "Enterprise leadership development at scale", evidence: "10,000+ leaders developed at Cisco; $700M revenue impact." },
+    { skill: "Leadership pipeline and succession design", evidence: "New Team Leader Program: 85% promoted into leadership within 6 months." },
+    { skill: "Career architecture and internal mobility", evidence: "Career Navigator and the interactive Career Lattice at Cisco." },
+    { skill: "Coaching teams into new capabilities", evidence: "Coached the Shopify team on designing, building, and deploying agentic AI." },
+    { skill: "Scaling programs across geographies", evidence: "Global cohorts across Shopify, Elastic EMEA, Cisco worldwide." },
+    { skill: "Leading through restructuring and ambiguity", evidence: "Expanded scope amid ~90% L&D headcount reduction." },
+  ]},
+  { title: "Change Management & AI Adoption", rows: [
+    { skill: "AI-for-internal-use strategy and execution", evidence: "Current Cisco charter: identify, prioritize, deliver AI solutions improving human capability." },
+    { skill: "Workflow automation and redesign strategy", evidence: "Time savings at scale: reducing handoffs, delays, and execution variance." },
+    { skill: "Access-to-adoption transformation", evidence: "Core thesis distinguishing license distribution from redesigning how work gets done." },
+    { skill: "Funding-model and organizational change", evidence: "Shifted $77M of decentralized training funding to a central group at Cisco." },
+    { skill: "Stakeholder alignment in politically complex environments", evidence: "Charter: driving priorities through competing agendas in a hierarchical enterprise." },
+    { skill: "Sense-making and decision-quality acceleration", evidence: "Cisco charter: accelerating decision quality across complex cross-functional work." },
+  ]},
+  { title: "Cross-Functional Influence & Executive Communication", rows: [
+    { skill: "C-suite and revenue-leadership partnership", evidence: "Partnered directly with revenue leadership and C-suite as enablement became a primary growth lever at Elastic." },
+    { skill: "Cross-functional production partnerships", evidence: "AI leads and business process owners at Cisco; product, sales, and support at Shopify." },
+    { skill: "Executive-level program sponsorship and reporting", evidence: "Executive-level role at Charter; MBR/QBR stakeholder cadence." },
+    { skill: "Translating technical concepts for mixed audiences", evidence: "LLM and search technology enablement for sellers, partners, and IBM field teams." },
+    { skill: "Published thought leadership", evidence: "Author, Corporate IQ for Managers." },
+  ]},
+];
+
+const toolFluency = {
+  "AI & agents": ["NotebookLM", "Perplexity", "LibreChat agents", "Gumloop", "Custom performance agents", "LLM + enterprise search (SalesGPT)", "Claude Agent Skills", "Claude Design", "Claude Code", "Claude Projects", "Claude API"],
+  "Enablement & content platforms": ["Seismic", "Slack", "Google Meet", "Task-management automation", "Partner Eden demo environment"],
+  "Methodologies": ["Challenger\u2122", "MEDDPICC", "Command of the Message", "Competency-based badging", "Scenario & simulation frameworks", "MBR/QBR cadence", "MVP & phased-release delivery"],
+};
+
+function Page() {
+  return (
+    <div style={{ background: "var(--surface-page)", fontFamily: "var(--font-sans)", color: "var(--text-primary)" }}>
+      <div style={{ maxWidth: "var(--container-wide)", margin: "0 auto", padding: "0 40px" }}>
+        <NavBar name="Barry Shields" activeHref="expertise.html" links={navLinks} />
+
+        <section style={{ padding: "56px 0 24px" }}>
+          <SectionHeading eyebrow="Expertise" title="Core Expertise"
+            subtitle="A complete, evidence-anchored skills taxonomy — every claim tied to a proof point. Signature differentiators first, then the full inventory by domain." />
+        </section>
+
+        <section style={{ paddingBottom: 56 }}>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--size-micro)", letterSpacing: "var(--tracking-widest)", textTransform: "uppercase", color: "var(--text-tertiary)", marginBottom: 16 }}>Signature Differentiators</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {differentiators.map((d, i) => <DifferentiatorCard key={i} n={i + 1} {...d} />)}
+          </div>
+        </section>
+
+        <section style={{ paddingBottom: 40 }}>
+          {domains.map((d, i) => <DomainSection key={i} {...d} />)}
+        </section>
+
+        <section style={{ paddingBottom: 64, borderTop: "1px solid var(--border-default)", paddingTop: 40 }}>
+          <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--size-title)", color: "var(--text-primary)", marginBottom: 20 }}>Technical & Tool Fluency</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            {Object.entries(toolFluency).map(([group, tools]) => (
+              <div key={group}>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--size-micro)", letterSpacing: "var(--tracking-wide)", textTransform: "uppercase", color: "var(--text-tertiary)", marginBottom: 10 }}>{group}</div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {tools.map((t) => <ToolChip key={t}>{t}</ToolChip>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Page />);
+</script>

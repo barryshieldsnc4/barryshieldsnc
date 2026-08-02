@@ -1,0 +1,15 @@
+<!-- @dsCard group="Components" viewport="700x100" name="Nav Bar" -->
+<link rel="stylesheet" href="../../styles.css">
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { NavBar } = window.Ledger;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{padding:'0 24px',background:'var(--surface-page)'}}>
+    <NavBar name="Barry Shields" activeHref="#work" links={[{href:'#work',label:'Experience'},{href:'#expertise',label:'Expertise'},{href:'#contact',label:'Contact'}]} />
+  </div>
+);
+</script>

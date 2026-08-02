@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" viewport="700x200" name="Card" -->
+<link rel="stylesheet" href="../../styles.css">
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Card, Tag } = window.Ledger;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{padding:24,background:'var(--surface-page)',display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+    <Card title="Learning Design & Craft">
+      <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+        <Tag>Instructional Design</Tag><Tag>Learning Science</Tag>
+      </div>
+    </Card>
+    <Card title="AI-Powered Content Production">
+      <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+        <Tag tone="highlight">NotebookLM</Tag><Tag>LibreChat Agents</Tag>
+      </div>
+    </Card>
+  </div>
+);
+</script>
