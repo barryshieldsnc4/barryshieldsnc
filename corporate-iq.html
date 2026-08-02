@@ -5,141 +5,231 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Corporate IQ: For Managers (Interactive Manuscript)</title>
   <meta name="description" content="An interactive, readable HTML edition of Corporate IQ: For Managers." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0c0f;
-      --panel: #11131a;
-      --text: #e7e9ee;
-      --muted: #a6adbb;
-      --brand: #7c9cff;
-      --brand-2: #4de1c1;
-      --border: #1d2230;
-      --shadow: 0 6px 30px rgba(0,0,0,.25);
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f7f8fb;
-        --panel: #ffffff;
-        --text: #0f1222;
-        --muted: #525b70;
-        --brand: #3a63ff;
-        --brand-2: #11bfa1;
-        --border: #e9edf5;
-        --shadow: 0 6px 24px rgba(10, 24, 54, .08);
-      }
-    }
-    html, body { height: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #782f40 0%, #a6336b 100%);
+      min-height: 100vh;
     }
-    .app {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 96px 20px 64px;
-    }
+
+    /* Sticky top bar */
     header.topbar {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: saturate(1.2) blur(10px);
-      background: color-mix(in srgb, var(--bg) 70%, transparent);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #782f40 0%, #a6336b 100%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
     .topbar-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 14px 20px;
+      padding: 16px 20px;
       display: grid;
       grid-template-columns: 1fr auto auto;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
     .brand {
       display: flex; align-items: center; gap: 12px;
-      font-weight: 700; letter-spacing: .3px; font-size: 18px;
+      font-weight: 700; font-size: 1.15rem; color: #fff;
     }
-    .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 15%, transparent); }
+    .brand .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+    }
 
     .search {
-      display: flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 8px 10px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50px;
+      padding: 9px 16px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
       min-width: 280px;
+      color: #fff;
     }
-    .search input { flex: 1; background: transparent; border: 0; outline: 0; color: var(--text); font-size: 14px; }
-    .btn {
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 80%, transparent), var(--panel));
-      color: var(--text);
-      padding: 8px 12px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 14px;
-      box-shadow: var(--shadow);
+    .search input {
+      flex: 1; background: transparent; border: 0; outline: 0;
+      color: #fff; font-size: 0.95rem; font-family: inherit;
     }
-    .btn.secondary { background: var(--panel); }
+    .search input::placeholder { color: rgba(255, 255, 255, 0.7); }
 
+    .btn {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 9px 18px; border-radius: 50px; cursor: pointer;
+      font-weight: 600; font-size: 0.9rem; font-family: inherit;
+      transition: all 0.3s ease;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.28);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* Layout */
+    .app {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    /* Sidebar table of contents */
     aside.nav {
-      position: sticky; top: 88px; align-self: start;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      border-radius: 16px; padding: 14px 12px;
-      box-shadow: var(--shadow);
-      max-height: calc(100vh - 120px);
+      position: sticky; top: 100px; align-self: start;
+      background: #fff;
+      border-radius: 15px; padding: 25px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      max-height: calc(100vh - 140px);
       overflow: auto;
     }
-    .nav h3 { margin: 8px 12px 6px; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
-    .toc { list-style: none; margin: 0; padding: 0; }
-    .toc a { display:block; padding: 8px 10px; margin: 2px 0; text-decoration: none; color: var(--text); border-radius: 10px; font-size: 14px; }
-    .toc a:hover { background: color-mix(in srgb, var(--brand) 20%, transparent); }
-    .toc a.active { background: color-mix(in srgb, var(--brand) 30%, transparent); outline: 1px solid color-mix(in srgb, var(--brand) 35%, transparent); }
-    .toc .sub { padding-left: 10px; }
-
-    main {
-      border: 1px solid var(--border);
-      background: var(--panel);
-      border-radius: 16px; box-shadow: var(--shadow);
+    .nav h3 {
+      margin: 0 0 15px; font-size: 0.8rem; color: #782f40;
+      text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;
     }
-    .hero { padding: 28px 28px 0; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 10%, transparent), transparent); border-top-left-radius: 16px; border-top-right-radius: 16px; }
-    .hero h1 { margin: 0 0 6px; line-height: 1.15; font-size: clamp(28px, 3vw, 40px); }
-    .hero p.meta { margin: 0 0 18px; color: var(--muted); }
+    .toc { list-style: none; }
+    .toc a {
+      display: block; padding: 9px 12px; margin: 3px 0;
+      text-decoration: none; color: #2c3e50;
+      border-radius: 10px; font-size: 0.92rem;
+      transition: all 0.3s ease;
+    }
+    .toc a:hover { background: #f8f9fa; color: #782f40; transform: translateX(4px); }
+    .toc a.active {
+      background: linear-gradient(135deg, #782f40 0%, #a6336b 100%);
+      color: #fff;
+    }
+    .toc .sub { list-style: none; padding-left: 10px; }
 
-    .content { padding: 16px 28px 40px; }
-    section.part { margin: 28px 0 10px; padding: 20px; background: color-mix(in srgb, var(--brand) 8%, transparent); border: 1px solid var(--border); border-radius: 14px; }
-    section.part h2 { margin: 0; font-size: 20px; }
+    /* Main panel */
+    main {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+    .hero {
+      background: linear-gradient(135deg, #782f40 0%, #a6336b 100%);
+      color: #fff;
+      padding: 50px 40px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700; margin-bottom: 12px;
+    }
+    .hero p.meta { opacity: 0.9; font-size: 1.05rem; }
 
-    article.chapter { padding: 12px 0 8px; margin: 0 0 10px; border-bottom: 1px dashed var(--border); }
+    .content { padding: 40px; }
+
+    /* Part dividers */
+    section.part {
+      margin: 45px 0 30px;
+      padding: 30px;
+      background: linear-gradient(135deg, #782f40 0%, #a6336b 100%);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(120, 47, 64, 0.3);
+      text-align: center;
+    }
+    section.part h2 { font-size: 1.6rem; font-weight: 600; color: #fff; }
+
+    /* Chapters */
+    article.chapter {
+      padding: 10px 0 30px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f8f9fa;
+    }
     article.chapter:last-child { border-bottom: 0; }
-    article.chapter h3 { margin-top: 14px; scroll-margin-top: 90px; }
+    article.chapter h3 {
+      font-size: 1.8rem; font-weight: 600; color: #2c3e50;
+      margin: 20px 0 28px; scroll-margin-top: 100px;
+      position: relative; padding-bottom: 15px;
+    }
+    article.chapter h3::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 80px; height: 4px; border-radius: 2px;
+      background: linear-gradient(45deg, #782f40, #a6336b);
+    }
+    article.chapter p { margin-bottom: 15px; color: #555; line-height: 1.8; }
 
-    .subhead { margin: 12px 0 6px; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-size: 13px; }
-    .callout { border-left: 4px solid var(--brand); padding: 10px 14px; background: color-mix(in srgb, var(--brand) 6%, transparent); border-radius: 8px; }
-    .callout.key { border-color: var(--brand-2); background: color-mix(in srgb, var(--brand-2) 8%, transparent); }
+    .subhead {
+      margin: 28px 0 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.09em; color: #782f40; font-size: 0.82rem;
+    }
 
-    ol, ul { padding-left: 20px; }
-    .foot { margin-top: 32px; font-size: 13px; color: var(--muted); }
+    .callout {
+      border-left: 4px solid #782f40;
+      padding: 18px 22px; background: #f8f9fa;
+      border-radius: 10px; margin: 15px 0;
+    }
+    .callout p { margin: 0; }
+    .callout.key {
+      border-left: 0;
+      background: linear-gradient(135deg, #782f40 0%, #a6336b 100%);
+      color: #fff; font-weight: 500;
+      box-shadow: 0 10px 30px rgba(120, 47, 64, 0.3);
+      padding: 22px 26px;
+    }
+
+    ol, ul { padding-left: 22px; margin-bottom: 15px; }
+    ol li, ul li { margin-bottom: 10px; color: #555; line-height: 1.7; }
+
+    .foot { margin-top: 35px; font-size: 0.88rem; color: #666; }
 
     .floating-top {
-      position: fixed; right: 20px; bottom: 20px; z-index: 60;
-      opacity: 0; transform: translateY(10px); transition: .2s ease;
+      position: fixed; right: 25px; bottom: 25px; z-index: 60;
+      background: linear-gradient(135deg, #782f40 0%, #a6336b 100%);
+      border: 0; color: #fff;
+      box-shadow: 0 10px 30px rgba(120, 47, 64, 0.4);
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
     }
-    .floating-top.show { opacity: 1; transform: translateY(0); }
+    .floating-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .floating-top.show:hover { transform: translateY(-3px); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .app { grid-template-columns: 1fr; padding: 25px 15px 50px; }
+      aside.nav { position: static; max-height: 320px; }
+      .topbar-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      .search { width: 100%; min-width: 0; }
+      .content { padding: 25px 20px; }
+      .hero { padding: 35px 20px; }
+      article.chapter h3 { font-size: 1.5rem; }
+    }
 
     /* Print */
     @media print {
       header.topbar, aside.nav, .floating-top { display: none !important; }
       body { background: #fff; }
-      main { box-shadow: none; border: 0; }
-      .hero { background: none; border: 0; padding: 0; }
+      main { box-shadow: none; border-radius: 0; }
+      .hero { background: none; color: #000; padding: 0 0 20px; text-align: left; }
       .app { grid-template-columns: 1fr; padding: 0; }
       .content { padding: 0; }
+      section.part {
+        background: none; box-shadow: none;
+        border: 2px solid #782f40;
+      }
+      section.part h2 { color: #782f40; }
+      .callout.key {
+        background: none; color: #000;
+        border: 2px solid #782f40; box-shadow: none;
+      }
     }
+  
   </style>
 </head>
 <body>
@@ -156,7 +246,6 @@
       <div style="display:flex; gap:8px;">
         <a class="btn secondary" href="index.html" title="Back to Barry Shields' resume" style="text-decoration:none; display:inline-flex; align-items:center;">&larr; Resume</a>
         <button class="btn" id="printBtn" title="Print or Save as PDF">Print</button>
-        <button class="btn secondary" id="themeBtn" title="Toggle theme">Theme</button>
       </div>
     </div>
   </header>
@@ -701,29 +790,6 @@
     });
     // Print button
     document.getElementById('printBtn').addEventListener('click', () => window.print());
-    // Theme toggle
-    const themeBtn = document.getElementById('themeBtn');
-    themeBtn.addEventListener('click', () => {
-      const cur = document.documentElement.getAttribute('data-theme');
-      document.documentElement.setAttribute('data-theme', cur === 'light' ? 'dark' : 'light');
-      if (document.documentElement.getAttribute('data-theme') === 'dark') {
-        document.documentElement.style.setProperty('--bg', '#0b0c0f');
-        document.documentElement.style.setProperty('--panel', '#11131a');
-        document.documentElement.style.setProperty('--text', '#e7e9ee');
-        document.documentElement.style.setProperty('--muted', '#a6adbb');
-        document.documentElement.style.setProperty('--brand', '#7c9cff');
-        document.documentElement.style.setProperty('--brand-2', '#4de1c1');
-        document.documentElement.style.setProperty('--border', '#1d2230');
-      } else {
-        document.documentElement.style.setProperty('--bg', '#f7f8fb');
-        document.documentElement.style.setProperty('--panel', '#ffffff');
-        document.documentElement.style.setProperty('--text', '#0f1222');
-        document.documentElement.style.setProperty('--muted', '#525b70');
-        document.documentElement.style.setProperty('--brand', '#3a63ff');
-        document.documentElement.style.setProperty('--brand-2', '#11bfa1');
-        document.documentElement.style.setProperty('--border', '#e9edf5');
-      }
-    });
     // Scroll spy + back-to-top
     const tocLinks = Array.from(document.querySelectorAll('.toc a'));
     const toTop = document.getElementById('toTop');
