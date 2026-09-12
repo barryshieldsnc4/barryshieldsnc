@@ -112,6 +112,55 @@
   }
   .fact-value { font-family: var(--font-serif); font-size: 1.0625rem; color: var(--ink); }
 
+  /* --- Masthead imagery ------------------------------------------------ */
+
+  /* "card": a mounted print, echoing the reference's centred hero card. */
+  .hero-photo {
+    max-width: 760px;
+    margin: var(--s8) auto 0;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: var(--s3);
+  }
+  .hero-photo img { display: block; width: 100%; height: auto; }
+
+  /* "bleed": the photo carries the whole masthead, title reversed out. */
+  body.mast-bleed .masthead {
+    position: relative;
+    background:
+      linear-gradient(rgba(20, 45, 45, 0.55), rgba(20, 45, 45, 0.65)),
+      url('img/ch08-kris-harbor-view.jpg') center 42% / cover no-repeat;
+    border-bottom: 0;
+    padding: 140px 0 120px;
+  }
+  body.mast-bleed .masthead h1,
+  body.mast-bleed .eyebrow { color: #ffffff; }
+  body.mast-bleed .standfirst { color: rgba(255, 255, 255, 0.92); }
+  body.mast-bleed .fact-label { color: rgba(255, 255, 255, 0.72); }
+  body.mast-bleed .fact-value { color: #ffffff; }
+  body.mast-bleed .trip-facts { border-top-color: rgba(255, 255, 255, 0.28); }
+
+  /* "strip": a filmstrip of the journey under the title. */
+  .hero-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border-block: 1px solid var(--rule);
+  }
+  .hero-strip img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  @media (max-width: 860px) {
+    .hero-photo { margin-top: var(--s7); padding: var(--s2); }
+    .hero-strip { grid-template-columns: repeat(3, 1fr); }
+    .hero-strip img:nth-child(n+4) { display: none; }
+    body.mast-bleed .masthead { padding: var(--s9) 0 var(--s8); }
+  }
+
   /* Layout */
   .layout {
     max-width: var(--wide);
@@ -263,13 +312,16 @@
   
 </style>
 </head>
-<body>
+<body class="mast-card">
 
   <header class="masthead">
     <div class="masthead-inner">
       <p class="eyebrow">Iceland and Greenland &middot; A 29th anniversary trip</p>
       <h1>Fearless Wifey vs. The Arctic</h1>
       <p class="standfirst">A husband narrates his wife's bucket-list trip like a nature documentary gone wrong. She is fearless and game for anything. He is along for the ride and mildly terrified. Written in step with the journey.</p>
+      <figure class="hero-photo">
+        <img src="img/ch08-kris-harbor-view.jpg" width="1600" height="1200" decoding="async" alt="Kris in a green coat on a grassy rise above Nuuk, camera with a long lens raised, photographing across the fjord past coloured houses, with icebergs on the water and mountains beyond.">
+      </figure>
       <div class="trip-facts">
         <div><span class="fact-label">Travelers</span><span class="fact-value">Barry and Kris</span></div>
         <div><span class="fact-label">Route</span><span class="fact-value">Reykjavík, Golden Circle, Ísafjörður, Qaqortoq, Nuuk</span></div>
