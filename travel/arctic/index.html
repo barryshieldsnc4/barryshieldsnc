@@ -6,154 +6,208 @@
 <title>Fearless Wifey vs. The Arctic</title>
 <meta name="description" content="A husband narrates his wife's bucket-list Iceland and Greenland trip like a nature documentary gone wrong.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="../../styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Italiana&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
+  :root {
+    /* Adventure Travels Group palette */
+    --paper: #ffffff;
+    --paper-tint: #f1fafa;
+    --ink: #1b1b1b;
+    --ink-soft: #4c5a5a;
+    --ink-faint: #8aa0a0;
+    --rule: #dcebeb;
+    --teal: #6cc0c1;
+    --teal-deep: #477f7f;
+    --teal-mid: #58a0a1;
+    --blush: #f277a7;
+
+    --font-display: 'Italiana', 'EB Garamond', Georgia, serif;
+    --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --narrow: 720px;
+    --wide: 1120px;
+    --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
+    --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+    --fast: 120ms;
+    --ease: cubic-bezier(.4, 0, .2, 1);
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--surface-page);
-    color: var(--text-primary);
+    background: var(--paper);
+    color: var(--ink);
     font-family: var(--font-sans);
-    font-size: var(--size-body);
-    line-height: var(--leading-relaxed);
+    font-size: 16px;
+    line-height: 1.6;
   }
 
+  /* Lato, uppercase, widely tracked: the reference's label voice. */
   .eyebrow {
-    font-family: var(--font-mono);
-    font-size: var(--size-micro);
-    letter-spacing: var(--tracking-widest);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
     text-transform: uppercase;
-    color: var(--highlight);
+    color: var(--teal-deep);
   }
 
-  /* Masthead */
+  /* Masthead, on the pale teal band the reference uses behind its hero */
   .masthead {
-    border-bottom: 1px solid var(--border-default);
-    padding: var(--space-9) 0 var(--space-8);
+    background: var(--paper-tint);
+    border-bottom: 1px solid var(--rule);
+    padding: var(--s9) 0 var(--s8);
+    text-align: center;
   }
-  /* Same box as .layout so the left edge lines up with the chapters rail. */
   .masthead-inner {
-    max-width: var(--container-wide);
+    max-width: var(--narrow);
     margin: 0 auto;
-    padding-inline: var(--space-5);
+    padding-inline: var(--s5);
   }
   .masthead h1 {
     font-family: var(--font-display);
-    font-size: var(--size-display-1);
-    font-weight: var(--weight-medium);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tight);
-    margin: var(--space-4) 0 var(--space-5);
+    font-size: clamp(2.5rem, 1.6rem + 4vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    color: var(--teal-deep);
+    margin: var(--s5) 0 var(--s5);
+  }
+  .masthead h1::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 2px;
+    margin: var(--s5) auto 0;
+    background: var(--blush);
   }
   .standfirst {
-    font-family: var(--font-display);
-    font-size: var(--size-subtitle);
-    color: var(--text-secondary);
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
     max-width: 46ch;
+    margin: 0 auto;
   }
   .trip-facts {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-5);
-    margin-top: var(--space-7);
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--border-default);
+    justify-content: center;
+    gap: var(--s5) var(--s8);
+    margin-top: var(--s8);
+    padding-top: var(--s6);
+    border-top: 1px solid var(--rule);
   }
   .fact-label {
-    font-family: var(--font-mono);
-    font-size: var(--size-micro);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--text-tertiary);
     display: block;
-    margin-bottom: var(--space-1);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: var(--s2);
   }
-  .fact-value { font-size: var(--size-small); color: var(--text-primary); font-weight: var(--weight-medium); }
+  .fact-value { font-family: var(--font-serif); font-size: 1.0625rem; color: var(--ink); }
 
   /* Layout */
   .layout {
-    max-width: var(--container-wide);
+    max-width: var(--wide);
     margin: 0 auto;
-    padding: var(--space-8) var(--space-5) var(--space-9);
+    padding: var(--s8) var(--s5) var(--s9);
     display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: var(--space-8);
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: var(--s8);
     align-items: start;
   }
 
   /* Contents rail */
-  .rail { position: sticky; top: var(--space-6); }
+  .rail { position: sticky; top: var(--s6); }
   .rail h2 {
-    font-family: var(--font-mono);
-    font-size: var(--size-micro);
-    letter-spacing: var(--tracking-widest);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
-    font-weight: var(--weight-medium);
-    padding-bottom: var(--space-3);
-    border-bottom: 1px solid var(--border-default);
+    color: var(--teal-deep);
+    padding-bottom: var(--s3);
+    border-bottom: 2px solid var(--teal);
   }
   .rail ol { list-style: none; }
   .rail a {
     display: block;
-    padding: var(--space-3) 0;
-    border-bottom: 1px solid var(--border-default);
+    padding: var(--s3) 0;
+    border-bottom: 1px solid var(--rule);
     text-decoration: none;
-    color: var(--text-secondary);
-    transition: color var(--duration-fast) var(--ease-standard);
+    transition: color var(--fast) var(--ease);
   }
-  .rail a:hover { color: var(--link-hover); }
+  .rail a:hover .toc-title { color: var(--teal-deep); }
   .toc-num {
     display: block;
-    font-family: var(--font-mono);
-    font-size: var(--size-micro);
-    letter-spacing: var(--tracking-wide);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: 2px;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
   }
-  .toc-title { font-family: var(--font-display); font-size: var(--size-body); color: var(--text-primary); }
+  .toc-title {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    color: var(--ink);
+    transition: color var(--fast) var(--ease);
+  }
 
   /* Chapters */
-  .chapter { max-width: 68ch; padding-bottom: var(--space-9); }
-  .chapter + .chapter { border-top: 1px solid var(--border-default); padding-top: var(--space-8); }
+  .chapter { max-width: 66ch; padding-bottom: var(--s9); scroll-margin-top: var(--s5); }
+  .chapter + .chapter { border-top: 1px solid var(--rule); padding-top: var(--s8); }
   .chapter h2 {
-    font-family: var(--font-display);
-    font-size: var(--size-display-2);
-    font-weight: var(--weight-medium);
-    line-height: var(--leading-snug);
-    letter-spacing: var(--tracking-tight);
-    margin: var(--space-3) 0 var(--space-6);
-    scroll-margin-top: var(--space-5);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--teal-deep);
+    margin: var(--s3) 0 var(--s6);
+    scroll-margin-top: var(--s5);
   }
   .chapter p {
-    font-family: var(--font-display);
-    font-size: 1.0625rem;
-    line-height: var(--leading-relaxed);
-    color: var(--text-primary);
-    margin-bottom: var(--space-5);
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: var(--s5);
   }
-  .chapter .photos { margin: var(--space-6) 0 var(--space-7); }
+  /* The nature-documentary voice, set against the brand teal. */
+  .chapter p.aside {
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--teal);
+    background: var(--paper-tint);
+    padding: var(--s4) var(--s5);
+    border-radius: 0 2px 2px 0;
+    margin: var(--s6) 0;
+  }
+
+  /* Photos */
+  .chapter .photos { margin: var(--s6) 0 var(--s7); }
   .chapter figure { margin: 0; }
   .chapter figure img {
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-sm);
+    border: 1px solid var(--rule);
   }
-  /* A lone photo keeps its own proportions. Tall ones are capped so a portrait
-     frame doesn't push the prose off the screen. */
   .chapter .photos:not(.photos-grid) figure img {
     width: auto;
     max-width: 100%;
     max-height: 78vh;
   }
-  /* Several photos of one scene read as a strip of uniform tiles. */
   .chapter .photos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: var(--space-4);
+    gap: var(--s4);
     align-items: start;
   }
   .chapter .photos-grid:not(.photos-natural) figure img {
@@ -161,47 +215,52 @@
     object-fit: cover;
   }
   .chapter figcaption {
-    font-family: var(--font-mono);
-    font-size: var(--size-micro);
-    line-height: var(--leading-normal);
-    color: var(--text-tertiary);
-    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-top: var(--s3);
   }
-
-  /* The nature-documentary voice gets its own register. */
-  .chapter p.aside {
-    font-style: italic;
-    color: var(--text-secondary);
-    border-left: 2px solid var(--highlight);
-    padding-left: var(--space-5);
-    margin: var(--space-6) 0;
-  }
-  .chapter { scroll-margin-top: var(--space-5); }
 
   footer {
-    border-top: 1px solid var(--border-default);
-    padding: var(--space-7) 0;
+    background: var(--paper-tint);
+    border-top: 1px solid var(--rule);
+    padding: var(--s8) 0;
+    text-align: center;
   }
   .footer-inner {
-    max-width: var(--container-wide);
+    max-width: var(--wide);
     margin: 0 auto;
-    padding-inline: var(--space-5);
-    font-size: var(--size-small);
-    color: var(--text-tertiary);
+    padding-inline: var(--s5);
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
   }
-  footer p + p { margin-top: var(--space-3); }
+  footer p + p { margin-top: var(--s3); color: var(--ink-faint); }
 
+  /* Responsive */
   @media (max-width: 860px) {
-    .masthead { padding: var(--space-7) 0 var(--space-6); }
-    .layout { grid-template-columns: 1fr; gap: var(--space-6); padding-top: var(--space-6); }
-    .rail { position: static; }
+    .masthead { padding: var(--s8) 0 var(--s7); }
+    .layout { grid-template-columns: 1fr; gap: var(--s6); padding: var(--s6) var(--s5) var(--s8); }
+    .rail { position: static; max-height: 320px; overflow: auto; }
     .rail ol {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 0 var(--space-5);
+      gap: 0 var(--s5);
     }
-    .chapter { padding-bottom: var(--space-7); }
+    .trip-facts { gap: var(--s5); }
+    .chapter { padding-bottom: var(--s7); }
   }
+
+  /* Print */
+  @media print {
+    .rail { display: none !important; }
+    body, .masthead, footer { background: #fff; }
+    .masthead { padding: 0 0 var(--s5); text-align: left; }
+    .layout { grid-template-columns: 1fr; padding: 0; }
+    .chapter p.aside { background: none; }
+    .chapter h2, .masthead h1 { color: #000; }
+  }
+  
 </style>
 </head>
 <body>
