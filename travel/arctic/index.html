@@ -133,13 +133,32 @@
     color: var(--text-primary);
     margin-bottom: var(--space-5);
   }
-  .chapter figure { margin: var(--space-6) 0 var(--space-7); }
+  .chapter .photos { margin: var(--space-6) 0 var(--space-7); }
+  .chapter figure { margin: 0; }
   .chapter figure img {
     display: block;
     width: 100%;
     height: auto;
     border: 1px solid var(--border-default);
     border-radius: var(--radius-sm);
+  }
+  /* A lone photo keeps its own proportions. Tall ones are capped so a portrait
+     frame doesn't push the prose off the screen. */
+  .chapter .photos:not(.photos-grid) figure img {
+    width: auto;
+    max-width: 100%;
+    max-height: 78vh;
+  }
+  /* Several photos of one scene read as a strip of uniform tiles. */
+  .chapter .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: var(--space-4);
+    align-items: start;
+  }
+  .chapter .photos-grid figure img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
   .chapter figcaption {
     font-family: var(--font-mono);
@@ -218,10 +237,12 @@
         <article class="chapter" id="ch01">
           <p class="eyebrow">One &middot; Home, the night before</p>
           <h2>The One-Day Pack</h2>
-          <figure>
-            <img src="img/ch01-the-one-day-pack.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Six pieces of luggage lined up on an airport curb: two large hardshell suitcases, a pineapple-print carry-on, an olive duffel, and two backpacks.">
-            <figcaption>The one-day pack, staged at the curb.</figcaption>
-          </figure>
+          <div class="photos">
+            <figure>
+              <img src="img/ch01-the-one-day-pack.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Six pieces of luggage lined up on an airport curb: two large hardshell suitcases, a pineapple-print carry-on, an olive duffel, and two backpacks.">
+              <figcaption>The one-day pack, staged at the curb.</figcaption>
+            </figure>
+          </div>
           <p class="aside">Observe the North American Wifey, recently returned to her natural habitat after a week spent in the wild testing her tolerance for inversions, g-forces, and convention-center coffee.</p>
           <p>That's the voice that lives in my head. I didn't ask for it. It showed up somewhere around year three of marriage to Kris, uninvited, the way a stray cat shows up and then simply never leaves, and it has been narrating our life together in hushed, reverent tones ever since. Most days I can keep it quiet. The day Kris came home from Orlando with one day to pack for Iceland was not most days, mostly because I spent that day doing everything except what I should have been doing.</p>
           <p>In my defense, I was excited. I'd gotten home first — three hundred miles away myself, at a rivalry football game I'd promised a version of my seventeen-year-old self I'd never miss — and instead of walking in and packing like a reasonable adult with a transatlantic flight in eighteen hours, I sat down at the kitchen table, opened my laptop, and fell into a two-hour hole of Iceland waterfall videos. Then a hole of "best hot dog stands in Reykjavik" articles. Then I texted my brother a photo of a glacier lagoon with the message THIS IS WHERE WE'RE GOING TOMORROW like a man who had personally discovered it. By the time Kris's Uber pulled in, I had learned eleven facts about puffins and packed exactly one item: a wool hat I'd bought two years ago and never worn, sitting proudly on top of an otherwise empty suitcase like a flag planted on a mountain nobody had climbed.</p>
@@ -262,10 +283,30 @@
           <p>We checked into Center Hotels Miðgarður, tucked at the quiet end of Laugavegur, close enough to walk into the heart of downtown without paying downtown prices — and it turned out to have its own small spa, indoor and outdoor hot tubs and a sauna, steps from the street, which felt like a very specific kind of luxury: recovery built directly into the architecture.</p>
           <p>Reykjavik itself announced its personality immediately — buildings painted every color a building is allowed to be, murals, a street literally striped like a rainbow running toward a church, shops selling wool sweaters at prices calibrated to how charmed and cold you currently were. Accessibility, it turned out, was a mixed bag; the sidewalks were bumpy but manageable, but Kris was surprised by how few storefronts had ramps — enough that she started photographing the ones that did, quietly building a record that no website was going to hand her. That's the kind of detail, she told me, you don't learn until you're actually there, rolling over it yourself.</p>
           <p>Lunch was at Bastard Brew &amp; Food, which Kris picked on the reasonable theory that if she was about to drag me to Icelandic hot springs later in the trip, the least she owed me was a brewery first. I had an IPA and a reindeer burger, liked the beer enough to buy an actual glass to bring home, which is either a sign of good taste or a sign I was still slightly delirious from the flight. Kris had fish and chips, crunchy in the specific way that makes you stop mid-bite. We wandered after, shopped a little, and tried, mostly unsuccessfully, to do currency math in our heads — sixteen thousand-something krona for lunch sounded terrifying until you Googled it and remembered that number meant something closer to reasonable.</p>
+          <div class="photos photos-grid">
+            <figure>
+              <img src="img/ch02-bastard-pour.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="A stemmed glass of hazy pale beer with a thick white head, branded with the Bastard logo, on a wooden table.">
+              <figcaption>The glass came home with us.</figcaption>
+            </figure>
+            <figure>
+              <img src="img/ch02-bastard-darts.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="A pub back room with two dartboards mounted on a patterned wall above a long bookshelf of old hardbacks, wooden floor.">
+              <figcaption>Dartboards and a wall of books.</figcaption>
+            </figure>
+            <figure>
+              <img src="img/ch02-bastard-bar.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="A bar counter with a row of steel taps, bottles behind it, and a chalkboard beer list with prices in króna.">
+              <figcaption>The tap list, priced in króna.</figcaption>
+            </figure>
+          </div>
           <p>Then the overnight flight finally caught up with both of us, all at once, and we crashed — hard, curtains shut, the specific dead sleep of two people who'd been running on adrenaline and stability updates for weeks.</p>
           <p class="aside">Even the fearless creature requires maintenance.</p>
           <p>We pulled ourselves together for an 8:30 dinner reservation at ROK, beside Hallgrímskirkja, and the church was the first real <em>wow</em> of the trip — pale stone going straight up into a sky that hadn't decided what time it was yet. ROK does small plates, which suited us fine with only three days to taste as much of the country as we could: shrimp, African lamb, sourdough with cheese and pears, then brownie, mango cheesecake, and Irish coffee to close it out. I don't eat lamb, as a rule. Everyone had told Kris Icelandic lamb was different. Everyone was right.</p>
           <p>Partway through dinner Kris spotted the church lit up gold outside the window and told me, mid-bite, that we were going back for nighttime pictures. I got us a cab while she squeezed in one last daylight selfie out front, and standing there later under the illuminated spire, I watched something cross her face — not about the church, I don't think, but about the fact that we were standing in front of it at all.</p>
+          <div class="photos">
+            <figure>
+              <img src="img/ch02-hallgrimskirkja-night.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Hallgrímskirkja lit up at night, its stepped concrete facade and tall spire against a black sky, people walking past below.">
+              <figcaption>Hallgrímskirkja after dark. Kris was right about going back.</figcaption>
+            </figure>
+          </div>
           <p>We've been taking anniversary trips since our youngest left for college. I remember the drive home after we dropped him off, Kris asking me, more than once, in the particular tone of someone genuinely unsure of the answer, <em>what am I going to do now?</em></p>
           <p>"You're going to pack," I told her. "And we're going to Ireland."</p>
           <p>Two days later, we did. We've been planning the next trip during the current one ever since — twenty-nine years of treating time together as something you protect on purpose, not something that just happens to you.</p>
