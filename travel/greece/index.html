@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Big Structure with Scaffolding</title>
+<meta name="description" content="A father whose glasses break before he lands in Greece narrates a family trip a cursed group chat swore would never happen.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marcellus&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Marble, ink, Aegean blue, and the honey the light goes at the end of the day */
+    --paper: #ffffff;
+    --paper-tint: #f4f7fa;
+    --ink: #1c1f23;
+    --ink-soft: #4f5862;
+    --ink-faint: #8b97a4;
+    --rule: #dfe6ed;
+    --blue: #3f6fa8;
+    --blue-deep: #2b4f7d;
+    --blue-pale: #eaf1f8;
+    --honey: #c08a3e;
+
+    --font-display: 'Marcellus', 'EB Garamond', Georgia, serif;
+    --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --narrow: 720px;
+    --wide: 1120px;
+    --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
+    --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+    --fast: 120ms;
+    --ease: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+  }
+
+  /* Masthead */
+  .masthead {
+    background: var(--paper-tint);
+    border-bottom: 1px solid var(--rule);
+    padding: var(--s9) 0 var(--s8);
+    text-align: center;
+  }
+  .masthead-inner {
+    max-width: var(--narrow);
+    margin: 0 auto;
+    padding-inline: var(--s5);
+  }
+  .masthead h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 1.4rem + 3.8vw, 4rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: 0.01em;
+    color: var(--blue-deep);
+    margin: var(--s5) 0 var(--s5);
+  }
+  .masthead h1::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 2px;
+    margin: var(--s5) auto 0;
+    background: var(--honey);
+  }
+  .standfirst {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 auto;
+  }
+  .trip-facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s5) var(--s8);
+    margin-top: var(--s8);
+    padding-top: var(--s6);
+    border-top: 1px solid var(--rule);
+  }
+  .fact-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: var(--s2);
+  }
+  .fact-value { font-family: var(--font-serif); font-size: 1.0625rem; color: var(--ink); }
+
+  /* Layout */
+  .layout {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: var(--s8) var(--s5) var(--s9);
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: var(--s8);
+    align-items: start;
+  }
+
+  /* Contents rail */
+  .rail { position: sticky; top: var(--s6); }
+  .rail h2 {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+    padding-bottom: var(--s3);
+    border-bottom: 2px solid var(--blue);
+  }
+  .rail ol { list-style: none; }
+  .rail a {
+    display: block;
+    padding: var(--s3) 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    transition: color var(--fast) var(--ease);
+  }
+  .rail a:hover .toc-title { color: var(--blue-deep); }
+  .toc-num {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
+  }
+  .toc-title {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    color: var(--ink);
+    transition: color var(--fast) var(--ease);
+  }
+
+  /* Chapters */
+  .chapter { max-width: 66ch; padding-bottom: var(--s9); scroll-margin-top: var(--s5); }
+  .chapter + .chapter { border-top: 1px solid var(--rule); padding-top: var(--s8); }
+  .chapter h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--blue-deep);
+    margin: var(--s3) 0 var(--s6);
+    scroll-margin-top: var(--s5);
+  }
+  .chapter p {
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: var(--s5);
+  }
+
+  /* A line from the group chat, or a dispatch quoted back. Sized to its text so
+     short messages read as messages rather than as paragraphs. */
+  .chapter p.message {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--blue-deep);
+    background: var(--blue-pale);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: var(--s3) var(--s5);
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 0 var(--s4) var(--s5);
+  }
+  /* A run of messages reads as one exchange, so tighten the gaps between them. */
+  .chapter p.message + p.message { margin-top: calc(-1 * var(--s2)); }
+
+  /* Scene break inside a chapter */
+  .chapter hr.scene-break {
+    border: 0;
+    width: 64px;
+    height: 1px;
+    background: var(--rule);
+    margin: var(--s7) auto;
+    overflow: visible;
+  }
+  .chapter hr.scene-break::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    background: var(--honey);
+    transform: rotate(45deg);
+    margin: -3px auto 0;
+  }
+
+  /* Photos */
+  .chapter .photos { margin: var(--s6) 0 var(--s7); }
+  .chapter figure { margin: 0; }
+  .chapter figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+  }
+  .chapter .photos:not(.photos-grid) figure img {
+    width: auto;
+    max-width: 100%;
+    max-height: 78vh;
+  }
+  .chapter .photos-grid.photos-4 { grid-template-columns: repeat(2, 1fr); }
+  .chapter .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: var(--s4);
+    align-items: start;
+  }
+  .chapter .photos-grid:not(.photos-natural) figure img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  .chapter figcaption {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-top: var(--s3);
+  }
+
+  footer {
+    background: var(--paper-tint);
+    border-top: 1px solid var(--rule);
+    padding: var(--s8) 0;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding-inline: var(--s5);
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+  }
+  footer p + p { margin-top: var(--s3); color: var(--ink-faint); }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .masthead { padding: var(--s8) 0 var(--s7); }
+    .layout { grid-template-columns: 1fr; gap: var(--s6); padding: var(--s6) var(--s5) var(--s8); }
+    .rail { position: static; max-height: 320px; overflow: auto; }
+    .rail ol {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0 var(--s5);
+    }
+    .trip-facts { gap: var(--s5); }
+    .chapter { padding-bottom: var(--s7); }
+    .chapter p.message { margin-left: 0; }
+  }
+
+  /* Print */
+  @media print {
+    .rail { display: none !important; }
+    body, .masthead, footer { background: #fff; }
+    .masthead { padding: 0 0 var(--s5); text-align: left; }
+    .layout { grid-template-columns: 1fr; padding: 0; }
+    .chapter p.message { background: none; }
+    .chapter h2, .masthead h1 { color: #000; }
+  }
+
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <p class="eyebrow">Athens and Meteora &middot; June 2025</p>
+      <h1>The Big Structure with Scaffolding</h1>
+      <p class="standfirst">A father whose glasses break before he lands in Greece narrates a family trip that a cursed group chat swore would never happen, and finds that the ancient things he came to see are all under repair.</p>
+      <div class="trip-facts">
+        <div><span class="fact-label">Travelers</span><span class="fact-value">Barry, Kris, Hadley and Zander</span></div>
+        <div><span class="fact-label">Route</span><span class="fact-value">Athens, Meteora, the Attica coast</span></div>
+        <div><span class="fact-label">Chapters</span><span class="fact-value">Eight</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="rail" aria-label="Chapters">
+      <h2>Chapters</h2>
+      <ol>
+          <li><a href="#ch01"><span class="toc-num">One</span><span class="toc-title">Well Shit, Now We&#x27;re Not Going</span></a></li>
+          <li><a href="#ch02"><span class="toc-num">Two</span><span class="toc-title">The Soft Version</span></a></li>
+          <li><a href="#ch03"><span class="toc-num">Three</span><span class="toc-title">Not on the List</span></a></li>
+          <li><a href="#ch04"><span class="toc-num">Four</span><span class="toc-title">The Big Structure</span></a></li>
+          <li><a href="#ch05"><span class="toc-num">Five</span><span class="toc-title">Eight Hundred and Ninety-Five</span></a></li>
+          <li><a href="#ch06"><span class="toc-num">Six</span><span class="toc-title">The Buffer</span></a></li>
+          <li><a href="#ch07"><span class="toc-num">Seven</span><span class="toc-title">The City Under Repair</span></a></li>
+          <li><a href="#ch08"><span class="toc-num">Eight</span><span class="toc-title">The Second Look</span></a></li>
+      </ol>
+    </nav>
+
+    <main>
+        <article class="chapter" id="ch01">
+          <p class="eyebrow">One &middot; Home, the night before</p>
+          <h2>Well Shit, Now We&#x27;re Not Going</h2>
+          <p>The chat was called Greece 2025, which was the first mistake.</p>
+          <p>I know it was a mistake because Zander told me so at eleven-forty the night before we left, from the next room, which is how our family has conducted most of its important business since he turned thirteen. Then he told the chat too, so there would be a record.</p>
+          <p>It was a screenshot of an infographic about the Greek days of the week, the kind of thing people share with a "fun fact!" and nothing else. Underneath it he had typed: <em>Well shit now we're not going.</em></p>
+          <p>I should explain the theory, for readers who have not been burned. You create a group chat for a trip. You give it a name with the year in it. You add everyone, and you feel organized, a little smug even, and from that moment the trip begins its slow evaporation into the category of things that were going to happen. Every phone in America has one: Cabo 2019, Girls Weekend (Nashville!!), a graveyard of itineraries, each last updated by someone who has since stopped answering. Greece 2025 had been alive for nine weeks. By any scientific standard it was overdue.</p>
+          <p>"It's not a curse," I told the wall between our rooms. "It's a chat."</p>
+          <p>"That's what the people in Nashville said," said the wall.</p>
+          <p>Hadley's messages began arriving at eleven-fifty-two, each with the calm of someone who had decided long ago that the only survivable way to run this family was ironic bureaucratic patience.</p>
+          <p class="message">Highly recommended to have a passport today.</p>
+          <p class="message">You have to show your passport to enter the car.</p>
+          <p class="message">Departure is 4 PM. Not kidding.</p>
+          <p class="message">Photos of passports please. I need proof.</p>
+          <p><em>that is exactly what someone who is kidding would say,</em> Zander wrote.</p>
+          <p>So we did the roll call. Kris's passport arrived first, photographed flat on the dresser beside the camera bag she had packed on Tuesday and inspected twice since, which she calls not worrying. Zander's came next, held at a skeptical angle. Mine arrived last, because mine had been in the drawer where we keep things we intend never to need, under the takeout menus, beside a battery of unknown origin. The photograph inside it showed a man being booked.</p>
+          <p><em>That's not a passport photo,</em> Hadley wrote. <em>That's a warrant.</em></p>
+          <p><em>It's me every year,</em> I wrote.</p>
+          <p>Then, at midnight, with the passports accounted for and nothing left to organize, she sent one more.</p>
+          <p class="message">Prediction: someone's hair is green by Athens.</p>
+          <p><em>who,</em> wrote Zander.</p>
+          <p class="message">It's a feeling.</p>
+          <p>Nobody asked her to explain. In our house a feeling from Hadley is treated as a weather report, and the question is only whether to bring a jacket.</p>
+          <p>That was the moment the argument stopped being about whether the curse was real. Zander, who had started it, finished it.</p>
+          <p class="message">We should rename the chat. Trick it.</p>
+          <p><em>Renaming is how you admit it,</em> Hadley wrote, and I watched the three little dots appear and vanish and appear again while she decided how much of a ruling she was willing to give. <em>You rename it, it knows. Then it's personal.</em></p>
+          <p>Which was, I noticed, the first time anyone had said out loud that there was an <em>it</em>.</p>
+          <p>Kris had come to stand behind my chair with a lens in each hand. She read the screen over my shoulder without hurry. "You don't rename a curse," she said. "You get on the plane."</p>
+          <p>I sat there with my thumb over the title, <em>Greece 2025</em>, in its small gray letters at the top of the screen. There were two ways to go and I could see both of them clearly. I could rename it something harmless, <em>Family Trip</em>, <em>Athens Maybe</em>, and hope the thing looking over our shoulders was easily fooled. Or I could leave the name alone and go anyway and let whatever was coming come.</p>
+          <p>There is a third way, which is the way of a man who has spent his career in rooms where somebody had to make an offer. I typed it before I could talk myself out of it.</p>
+          <p class="message">The name stays. Whatever it wants, it can have one thing. Not a person. Not a passport. One thing.</p>
+          <p>The dots appeared. Disappeared. Appeared.</p>
+          <p><em>That's not how curses work,</em> Hadley wrote.</p>
+          <p class="message">It's how deals work.</p>
+          <p><em>you are negotiating with a group chat,</em> wrote Zander, from the next room, and then, through the wall, louder, so that I couldn't pretend I hadn't heard: "Dad."</p>
+          <p>I let it stand. Kris squeezed my shoulder and went to put the lenses in the bag, and I turned off the light on a trip that was still, officially, doomed.</p>
+          <hr class="scene-break">
+          <p>We left at four. Not kidding.</p>
+          <p>All four passports were shown at the car, and the car, I'm pleased to report, did not ask for anything else. We got through the airport and onto the first plane. We hadn't reached London. We hadn't reached Greece. We were somewhere over the Atlantic, nine hours of dark and engine hum ahead of us, when I took my glasses off and put them in the seat-back pocket, which in retrospect was the act of a man who had never sat in a middle seat and watched a stranger try to leave it.</p>
+          <p>She did it with great apology. It's a kind of origami, the middle seat, a series of folds and <em>sorry</em>s and <em>excuse me</em>s, and in the middle of it her elbow caught the pocket on the way down. I heard a small plastic sound. By the time I understood what I was hearing, my frames were skittering up the aisle, tumbling lens over lens past a flight attendant's shoes, and the world, which had been perfectly clear a moment before, had gone soft at the edges and stayed that way.</p>
+          <p>I sat there for a long moment in the blur. The cabin lights smeared into one long amber smear. Somewhere ahead of me a baby began, patiently, to object to altitude.</p>
+          <p><em>One thing.</em> That's what I had offered. Not a person, not a passport. And it had looked over our family, our four documents, our bags and cameras and the whole improbable cargo of the trip, and it had chosen my glasses.</p>
+          <p>It was, honestly, a reasonable pick. Cheap. Replaceable. Not even a good pair.</p>
+          <p>I held out my hand and the woman in the middle seat, still apologizing, still folded in half, put the pieces in it. I did not tell her it was all right, because it wasn't, quite. But for the first time since the chat existed I felt something close to relief.</p>
+          <p>The curse had been paid.</p>
+          <p>We were going.</p>
+        </article>
+        <article class="chapter" id="ch02">
+          <p class="eyebrow">Two &middot; Athens, the first night</p>
+          <h2>The Soft Version</h2>
+          <p>The first thing Athens gave us was a view we hadn't asked for, and I couldn't see it.</p>
+          <p>This is not a complaint. This is a statement of optics. I had been awake for most of a day, I had spent nine hours in the soft-focus world my frames had left me with, and when Kris pulled back the curtains of our hotel room in the automatic way you do in a new place, to see what kind of light you've been given, what the light gave us was a long gold smear on a dark hill.</p>
+          <p>"Oh," said Kris.</p>
+          <p>"Oh," said Hadley, behind her.</p>
+          <p>"It's the Parthenon," said Zander, who had not said anything on the entire ride from the airport and chose this moment to begin.</p>
+          <p>"Is it?" I said. "Where?"</p>
+          <p>"Dad. It's the gold thing."</p>
+          <p>"There are a lot of gold things."</p>
+          <p>"It's the big gold thing," said Zander, "on the hill," which is, I understand, a complete and accurate description, and which I have since come to cherish, because it was the only account of the Acropolis that night in which the Acropolis did not sound like a postcard.</p>
+          <p>I stood at the window with the three of them and the glow, and I was, I'll admit, a little jealous. They were looking at a thing. I was looking at a feeling. Somewhere behind the glass a building two and a half thousand years old stood lit from below against a black sky, casually present above a city of five million people on an ordinary evening, and what I had was a warm, unfocused rumor of it.</p>
+          <p>I did what any reasonable man does. I asked someone else to describe it.</p>
+          <p>"Describe it," I said.</p>
+          <p>"It's golden," said Hadley.</p>
+          <p>"You're doing it a disservice."</p>
+          <p>"It's very big," said Hadley, "and very old, and it doesn't care that we're here."</p>
+          <p>That was better, but I still couldn't see it.</p>
+          <p>Hadley had gone off to the bathroom to explore, which is how our family learns the layout of any new room, and a moment later her voice came back through the door in the careful monotone she uses when she has found something she intends to enjoy.</p>
+          <p>"Dad. There's a sign."</p>
+          <p>"What kind of sign?"</p>
+          <p>"It's laminated. It's illustrated. It's in two languages, and it is very, very serious." She cleared her throat. "<em>Please do not flush toilet paper.</em>"</p>
+          <p>"Is there an illustration?"</p>
+          <p>"There's an illustration," said Hadley. "A person is making a choice. The choice is shown with a little X. There's a small wastebasket provided for the purpose, and the sign would like you to know it is provided <em>for the purpose.</em>"</p>
+          <p>Zander made a sound I'd last heard from him in the third grade. Kris put her hand over her mouth. I stood in a doorway in my socks, laughing at a sign I couldn't read, in a country that has been patching and re-patching its own plumbing for longer than there has been a word for plumbing, and understanding, in the part of the brain that does not need glasses, that Greece has been here longer than my preferences, and would be here long after them. We complied. You comply.</p>
+          <p>It was after the laughing, with the bathroom door open and the lights low, that Kris took the real camera out of its bag.</p>
+          <p>I should say that Kris does not take the real camera out in a hotel room. The real camera has its own bag and its own decisions, and she saves it for light she has decided deserves it. But she had the long lens on before the rest of us noticed, and she stood at the window and framed the hill, and for a moment she held very still.</p>
+          <p>"Here," she said. She turned the camera around and held it out to me, the little screen glowing in her hand. "Look."</p>
+          <p>On the screen the Parthenon stood in perfect, sharp, golden detail. Every column. Every shadow between the columns. The pediment with its lit edge, the stone gone the color of honey, the sky behind it a flat clean black. It was extraordinary. It looked like a photograph of the Parthenon, which is to say it looked like every picture of it I had ever seen.</p>
+          <p>And there, behind the camera, over Kris's shoulder, was the real thing: a gold smear on a hill.</p>
+          <p>I had a choice. I could take the sharp one. It was right there in her hand, perfect and offered, and no one in the room would have blamed me. Or I could look past it at the soft version, the real one, the one I could not read.</p>
+          <p>"Not that one," I said. "I'll look at it out there."</p>
+          <p>Kris looked at me for a second, and I couldn't tell you what her face did, because I couldn't see her face either. Then she turned the camera back around and lowered it, and she stood next to me at the window, and the four of us looked at the hill without saying much.</p>
+          <p>The smear stayed a smear. But after a while I noticed it had a shape, a long low line of warmth along the top of the dark, and under it the city going about its business, its lights smeared into one long amber river. It wasn't a building. It was an arrival. It felt, I thought, like something that did not need any of us to see it clearly in order to be what it was.</p>
+          <p>It's the last thing I remember from that night.</p>
+          <hr class="scene-break">
+          <p>In the morning, Athens kept its promise. Twenty-four hours after my frames went skittering up an aisle, I walked out of an optician's shop on a side street with a new pair, Armani, in a case I had no intention of ever using, and put them on in the doorway.</p>
+          <p>The street came into focus the way a thought does when you finally find the word for it. Signs sharpened. The stone of the building across the way separated into individual stones. Somewhere above the rooftops, so clear I could have counted the columns, stood the Parthenon, in the white daylight, exactly the way it looks in photographs.</p>
+          <p>This is the first thing Greece did to us. I had been given the sharp version, and it was better than I could have asked for, and I stood there with my hand on the strap of my bag, feeling that I had somehow been handed a copy of something I'd already seen.</p>
+          <p>Kris, Zander and Hadley were standing in the doorway behind me, waiting.</p>
+          <p>I turned and looked at each of them in turn, one at a time, the way you check a headcount. Kris. Zander. Hadley.</p>
+          <p>Everyone was there. Everyone's hair was the color it was supposed to be.</p>
+          <p>For now.</p>
+        </article>
+        <article class="chapter" id="ch03">
+          <p class="eyebrow">Three &middot; The Panathenaic Stadium</p>
+          <h2>Not on the List</h2>
+          <p>Hadley had an itinerary, and the itinerary had columns.</p>
+          <p>I mention this so that you understand what happened next. It was not a casual document. It lived on her phone in a spreadsheet she had built over nine weeks, color-coded, with a column for the time, a column for the place, a column for the thing you would be sorry to miss, and a column she called Buffer, which was where the unplanned went to be rationed. By then we had learned to follow it the way a crew follows a captain, with trust and a small amount of fear.</p>
+          <p>On the day after my new frames, the sheet said: <em>Walk to Acropolis. Lunch. Acropolis.</em></p>
+          <p>It did not say stadium.</p>
+          <p>We were somewhere in the middle of the walk, in the cool, kind weather the city was handing out that week, when Zander stopped. He stopped the way he does, without announcing it, so that the rest of us were three steps ahead before we noticed we were walking alone.</p>
+          <p>"What's that?" he said.</p>
+          <p>He was looking down a slope at something white. It rose out of a hollow between the trees, a long curved wall of pale stone, and it was so clean it looked like it had been poured there that morning. It was shaped like a horseshoe. It was enormous. There was a gate in it, and through the gate, people were walking onto something I couldn't see.</p>
+          <p>"It's not on the list," said Hadley, looking at her phone.</p>
+          <p>"It's a stadium," said Kris.</p>
+          <p>"It's the Panathenaic Stadium," said Hadley, who had found it in under four seconds, and I watched her read the page. "Built for the first modern Olympics. In 1896." She scrolled. "It's made entirely of marble."</p>
+          <p>"Entirely?"</p>
+          <p>"Not clad. Not partly." Her voice was doing the careful monotone. "The seats. The track surround. All of it. White Pentelic marble. Fifty thousand seats."</p>
+          <p>"That's not on the list," said Zander, in the voice of someone who is not asking for anything.</p>
+          <p>I watched my daughter's thumb hover over the screen.</p>
+          <p>I should explain what I was watching. Hadley is the organizer. In our family she is the one who makes the chat and names the chat and sends the reminder about passports, and she does it with irony, but under the irony there is a real conviction that the trip will go well if and only if somebody holds it together. She had a lunch reservation at one-thirty. She had a timed entry for the Acropolis later that afternoon. She had nine weeks of her own work on that screen, and a lot of it was for us.</p>
+          <p>And she had a hole in the plan with a very white stadium in it.</p>
+          <p>"If we go in," she said, mostly to the phone, "we lose the buffer."</p>
+          <p>"You have a buffer," I said.</p>
+          <p>"The buffer is for things that go wrong. This isn't wrong." She frowned at the screen. "It's just not <em>on there</em>."</p>
+          <p>Nobody said anything. That is, I think, the best thing I did as a father on the entire trip, and it was not very much: I did not say it was fine to skip lunch, I did not say that plans were made to be changed, and I did not put a hand on her shoulder. Kris had already seen it. I could tell from the way she was standing, with her weight on one foot and the camera unslung, in the posture of a woman who had decided to let someone else make the call.</p>
+          <p>"Your trip, Had," Kris said, which was one line, and which was all of it.</p>
+          <p>Hadley looked at the screen. Then she looked up, at the long white curve in the trees, and I saw her look at the real thing for the first time, not through the schedule.</p>
+          <p>She put the phone in her pocket.</p>
+          <p>"Okay," she said. "But we're doing the buffer on the other side."</p>
+          <p>"Obviously," said Zander, and he was already walking.</p>
+          <hr class="scene-break">
+          <p>You can walk down onto the track.</p>
+          <p>That's the first thing that astonished me. There is no velvet rope and no recorded voice asking you to remain behind a barrier. You go in through the gate, and the stadium opens above you in tiers, and you simply descend, past the white seats, step after step, until you are standing on the surface where the runners ran.</p>
+          <p>I'd like to describe the marble, and I'm going to have trouble. It was white. I don't mean cream or ivory or the weathered gray of old stone. I mean the color a child would pick if you asked for <em>white</em>. Fifty thousand seats, every one the same impossible color, climbing the sides of the hollow in a great horseshoe against the blue, and the whole thing so thoroughly, obsessively, completely marble that it seemed to have been dreamed by someone who then insisted on building it.</p>
+          <p>It's a peculiar building. It belongs to a temporal middle distance. It was finished in 1896, so it's too recent to be ancient, and it was made to look so much like something ancient that it's too ancient to be modern. It is the kind of place you get when a century believes it can resurrect a civilization through sheer sincerity of effort and enough stone. I've since thought that this is both a ridiculous thing to believe and a rather beautiful one, and that on the track, in my new glasses, in the quiet, I could not tell which.</p>
+          <p>Because it was quiet. Beyond the rim, Athens was going on, humming through the trees. Inside, there was only the sound of our own feet and the odd cough from the upper tiers, and the way the great white bowl held the air.</p>
+          <p>Zander walked out to the middle of the track and stopped with his hands at his sides. He did not do the arms-crossed thing. He just stood.</p>
+          <p>Kris had her camera up and then lowered it. She said nothing at all.</p>
+          <p>Hadley stood next to me at the edge of the track with her hands in her pockets. I did not look at her. I looked at the seats.</p>
+          <p>Then a pigeon walked across the track.</p>
+          <p>It crossed the whole width of the lane, from left to right, at an unhurried pace, with great purpose and no apparent destination, and it vanished into the shade under the seats on the far side. It had, I'm fairly sure, done this many times before. It would do it many more times, in the days after we'd gone home and the nights after that, and it had no idea at all that a family of four had stopped breathing to watch it.</p>
+          <p>"Dad," said Hadley, very quietly.</p>
+          <p>"Yeah."</p>
+          <p>"We would have missed this."</p>
+          <p>I thought about the schedule and the nine weeks and the column she called Buffer. I thought about the spreadsheet in her pocket, which was doing fine without her.</p>
+          <p>"Yeah," I said.</p>
+          <p>Some places earn their silence. This was one. We stood in it for as long as it took, and then we went to lunch, a little late, and it was the best lunch of the trip.</p>
+        </article>
+        <article class="chapter" id="ch04">
+          <p class="eyebrow">Four &middot; The Acropolis</p>
+          <h2>The Big Structure</h2>
+          <p>We lost Kris at the Propylaea.</p>
+          <p>I mean that in the nicest possible way. Kris does not get lost. Kris goes ahead. She has a sense of where the good light is, a kind of magnetic pull toward the highest available point, and when she feels it she simply goes, with the camera on her shoulder and a quick backward glance that means <em>you'll catch up</em>. We did not catch up. We were not built for it. The three of us moved at the speed of a family that has decided to see everything, while Kris moved at the speed of a woman who has decided to see it first.</p>
+          <p>So I walked up the Acropolis with my children, and this is how I know what I know about the steps.</p>
+          <p>They were marble. I had expected stone, in the way you expect stone from a ruin, and what I got was a floor that two and a half thousand years of feet had worn down past smoothness into something closer to shine. The surface caught the light. It also caught the unwary, the distracted, anyone looking up at the columns instead of down at their own shoes, and so you climbed the way you cross a river on slick rocks, with a small negotiation at every step, the ancient stone entirely indifferent to the outcome.</p>
+          <p>The weather was kind. I should say that, because it's the sort of thing you remember in the wrong season. It was the cool, generous sort of day Athens occasionally produces, as if to demonstrate what it might be like to live here without suffering, and we were grateful in the way you're grateful for unearned luck, which is to say completely, and without quite saying so.</p>
+          <p>We passed under the Propylaea, the great gateway, the columns standing in ranks on both sides with the roof beams crossing overhead. I stopped beneath them. I did not plan to. I looked up in my new glasses at fluted stone so sharp I could count the flutes, and I felt very small, in a way that had nothing to do with my size and everything to do with what marble columns do to a person's sense of scale. Someone had walked up here from the Agora two thousand years before there were backpacks or Armani frames or group chats with passports in them, and had stopped, and looked up, and felt exactly this.</p>
+          <p>"Dad," said Zander, from a few steps ahead, with great patience. "You're blocking the entrance to the ancient world."</p>
+          <p>"I'm having a moment."</p>
+          <p>"Have it over here."</p>
+          <p>I moved. Beside the path, at the very edge of the cliff, stood the little Temple of Athena Nike, small and precise and composed, with the authority of something that has survived everything and fully intends to go on doing so. And above us, at last, the Parthenon.</p>
+          <p>I'd been warned. Everyone is warned. I had seen it from the window the first night, a gold rumor on a dark hill, and I had seen it in the doorway of the optician's shop in the white light of morning, perfectly sharp. I thought I knew what it looked like. And now, up close, in the actual air, it did not look like its photographs.</p>
+          <p>I don't mean it disappointed. I mean that the photographs have been so thoroughly absorbed into whatever part of the brain files away the great monuments of Western civilization that the real thing produces a brief, vertiginous doubling. You are looking at the Parthenon, and you are also looking at every picture of the Parthenon you've ever seen, and for a moment neither one is entirely real.</p>
+          <p><em>I asked for the sharp version,</em> I thought. <em>I got it. It's like being handed the copy of the thing and being told the original is somewhere in the building.</em></p>
+          <p>Then I saw the scaffolding.</p>
+          <p>It was at the far end of the east colonnade, almost apologetic about itself: grey poles, a crane threaded between two and a half thousand years of fluted stone. From certain angles the whole row of columns lined up at once, marching toward a bank of white cloud, and only at the end did the scaffold appear. Nobody photographed around it. You couldn't, really. It was simply part of what the building currently was, the way a person recovering from surgery is still entirely that person, bandage included.</p>
+          <p>"It's been under restoration since 1975," said Hadley, reading it off her phone, and then she looked up. "Fifty years. They've been fixing it for fifty years."</p>
+          <p>"Will they finish?"</p>
+          <p>"I don't think that's the point," said Hadley.</p>
+          <p>I've turned that over a lot since. Preservation, I came to think, is structurally identical to loss: you are always catching up to what time has already taken, which means you are always, in some technical sense, losing. The work and the damage are the same size. They've just agreed to be in the same place at the same time.</p>
+          <hr class="scene-break">
+          <p>On the way down, Hadley found a doorway.</p>
+          <p>It was marble, wide, worn smooth, a frame of ancient stone with nothing in it but the view. She stepped into it and stood with one hand braced on the old stone and looked out over the steps toward the crowd below, a modern woman standing in a threshold two and a half thousand years deep, with the city arranged beneath her as though she had just climbed up out of it or was about to walk back down into it. It was the kind of pose that photographs itself. Zander, who is not the sort of person to say so, took the picture without saying anything.</p>
+          <p>Then she took out her phone and lifted it to her mouth.</p>
+          <p>"Text Mom," said Hadley, to the phone. "Just tell her we're near the big structure with scaffolding. Where they're doing repairs."</p>
+          <p>I had a choice, and I want to be honest about how much I wanted to take it. I am a person who counts steps. I am, God help me, the person who tells a daughter the right name for the thing she's looking at. The word was right there in my mouth. It had nine letters and a very famous roof.</p>
+          <p>"You mean the Parthenon?" I said.</p>
+          <p>I said it. I'm not proud of it.</p>
+          <p>Hadley didn't flinch. She lowered the phone a few inches and gave me the kind of look you give a man who has handed you a map in a foreign city.</p>
+          <p>"She went to Greek school," said Zander, from somewhere behind the camera.</p>
+          <p>And it was true. She had. She had sat in a classroom for years and been handed this, the name, the history, the columns, the democracy, the whole inheritance, and had carried it across an ocean and a good deal of time and arrived, finally, at the thing itself. And what she wanted her mother to know was: <em>there's scaffolding, they're fixing it, we're near, we're fine.</em></p>
+          <p>"Send," said Hadley, to the phone.</p>
+          <p>I closed my mouth. I have thought about it since. It was the most honest dispatch anyone sent from the Acropolis that day.</p>
+          <hr class="scene-break">
+          <p>Kris was still at the top.</p>
+          <p>She had not come down with us. She had waved us off, the way you wave off people who are leaving a party you intend to stay at, and so we went back up the last stretch of steps for her, and I'm not sure how to write what we found without making it smaller, so I'll try to write it plainly. She was standing at the high edge of the plateau with the wind in her hair and the whole of Athens at her feet, five million people living beneath a ruin and the ruin unmoved by any of them, and she was, I want to say, free. She was energy. She was the thing she is when she has gone up the steps first and arrived at the place where the view opens out in every direction and the sea is somewhere beyond it and the whole of Greece begins.</p>
+          <p>She turned and saw us, and she did not say anything at first. She just held out the phone with Hadley's text on the screen and laughed.</p>
+          <p class="message">Just tell her we're near the big structure with scaffolding. Where they're doing repairs.</p>
+          <p>"It's perfect," said Kris.</p>
+          <p>Standing there, I understood something no photograph had managed to transmit. We were not standing at a ruin. We were standing at a place where a few thousand years ago people had looked at the world and said <em>we can think about this, we can build something worthy of the thinking, we can make something that lasts,</em> and where, ever since, other people had been showing up with ladders to keep it standing. The inheritance wasn't a thing you were given. It was a thing you were given a ladder for.</p>
+          <p>We took the pictures anyway. Some things photograph, and some don't. This was the second kind.</p>
+          <p>That night, in the group chat, still named Greece 2025, a message arrived from Kris, with the autocorrect defeated and the right word found anyway:</p>
+          <p class="message">Today I felt so much halpiness.</p>
+          <p>Nobody corrected it.</p>
+        </article>
+        <article class="chapter" id="ch05">
+          <p class="eyebrow">Five &middot; Meteora</p>
+          <h2>Eight Hundred and Ninety-Five</h2>
+          <p>The curse had taken my glasses, and I assumed that settled it.</p>
+          <p>I should have known better, because the sun was not party to the agreement. We arrived at Meteora at 12:30 in the afternoon, after four and a half hours in a car across the Thessaly plain, a bronze, flat, enormous country with mountains at its edges like something the landscape was still thinking about, and I stepped out into a noon that had no softness in it at all. It was not the sun of morning or evening. It was a bureaucratic sun. It came straight down and found you wherever you were, and the shadows went small and hard and retreated beneath their objects as though ashamed.</p>
+          <p>Then I looked up, and forgot to be annoyed.</p>
+          <p>You don't see Meteora coming. Nothing prepares you. The rock pillars rise from the valley floor the way things rise in dreams, too large, too vertical, too sure of themselves, grey sandstone columns that took sixty million years to become what they are, standing in a cluster above the town of Kalambaka as though someone had arranged them and left without explaining. And on top of them, on rock that goes straight up for hundreds of meters and has no business having anything on it at all, stood the monasteries. Terracotta roofs. Stone walls growing out of stone cliffs. Windows looking down over a drop that the monks who first came in the fourteenth century would have found appropriate, even comfortable.</p>
+          <p>And at the base of the nearest one, ordinary as a strip mall, a parking lot.</p>
+          <p>Cars nosed into painted lines. A tour bus idled. People got out and walked toward a footpath that would take them up to a place a monk once reached only by rope and prayer. The monastery did not seem to notice. It had been up there getting closer to God for seven hundred years, and a parking lot was not going to change its opinion.</p>
+          <p>"Okay," said Hadley, very quietly, to no one. "It's a lot."</p>
+          <hr class="scene-break">
+          <p>Before we climbed, we did what families do at the foot of something enormous: we lined up against a guardrail with the rock behind us and took a photograph.</p>
+          <p>I was in pale blue, with my arm around Kris. Kris was in a long sage dress that would, within the hour, prove entirely wrong for eight hundred and ninety-five stone steps, and entirely right for how she wanted to remember standing there. Zander stood beside her in his cap with his arms loose, already looking more at what was above us than at the camera. Hadley, on the end, had her water bottles rattling in the side pockets of a backpack much too small for the day's heat. Behind us the pillar went up and up and did not care that we were memorializing it. It had seen this before.</p>
+          <p>"We're going to die," said Zander, pleasantly.</p>
+          <p>"We're not," said Hadley.</p>
+          <p>"The chat said."</p>
+          <p>And he wasn't wrong. We had named a group chat Greece 2025, said the curse out loud, and got on the plane anyway. It seemed to me, looking up at the rock, that this was the day it was going to be collected on.</p>
+          <p>Then we began to climb.</p>
+          <p>The steps are cut stone, worn and steep, switchbacking up the rock face with the logic of a path built by people who were going up regardless and only wanted company. You climb in the heat, with the rock face on one side and the drop on the other, and the valley floor recedes below you, and Kalambaka shrinks, and the other pillars come level and fall away beneath you. The body finds its rhythm or it doesn't. There is no middle option. You are going up.</p>
+          <p>I counted.</p>
+          <p>I don't know exactly when I started, or why, though I have a theory, which is that I am a man who handles enormous things by turning them into numbers. Some people photograph. Some people pray. I count. It makes the thing smaller and keeps it from being a feeling. A hundred. A hundred and twelve. A hundred and forty, and Kris, ahead of me on a switchback, turned around with her sunglasses on and her dress moving and kicked one leg up onto the trunk of a stunted pine that was growing sideways out of the cliff, and laughed at nothing in particular except the fact of being exactly there.</p>
+          <p>Behind her the whole valley opened, hazy and vast. Zander, a few steps on, photographed it himself instead of being photographed: steady, quiet, the sort of documentation that doesn't ask anyone to look at the camera. Hadley sat on a rock wall further up with the white sprawl of a town below her and claimed, for one frame, a little of the enormity behind her, as if it might rub off.</p>
+          <p>Two hundred and eighty. Three hundred and ten.</p>
+          <p>I should say what the numbers were for. I didn't know then. Every time I reached for the next one, I didn't have to look at what I was actually looking at, which was my family, all four of us, going up a mountain in the heat on purpose.</p>
+          <hr class="scene-break">
+          <p>The monastery at the top is called the Great Meteoro. It is the oldest and the largest in the complex, founded in the fourteenth century by a monk named Athanasios, who looked at the rock pillars rising from the plain and thought: <em>there.</em> Not the village. Not the valley. There, on top of the impossible thing. He went up by rope and basket. He stayed. Others followed. For centuries the only way in was vertical, hauled up in a net on a rope that the monks said was replaced only when God saw fit, which is either reassuring or not, depending on your relationship with divine scheduling.</p>
+          <p>Now there are steps. Eight hundred and ninety-five of them. I know because they told me.</p>
+          <p>I arrived at the top with my pale blue shirt gone dark and my new frames sliding down my nose, and there was a number posted on the wall, the monastery's way of acknowledging that you had done something, and it said what my body already knew. I stood there grinning like a man who has been told, by a series of events beginning with an airplane aisle and a stranger's elbow, that Greece was going to be difficult, and has decided to find this funny.</p>
+          <p>Inside, the stone held a cool that Byzantine stone keeps even in summer. The air was different in the throat: thicker, with incense and age and the particular silence of a place built to be silent and practicing for seven hundred years. Frescoes covered every surface, saints and angels and a theology the monks who painted it believed absolutely, their faces turned toward a God they had climbed a rock to be nearer to. The colors had faded but not gone. Still red. Still gold. Still looking down.</p>
+          <p>The monks themselves moved through it like the saints on the walls: present, robed, unbothered, crossing a courtyard or slipping through a low door without once looking at the tourists photographing everything. Not unfriendly. Simply elsewhere, as though several hundred years of practice had taught them to be in a room full of strangers without ever being seen by them, which is its own kind of discipline, and maybe a harder one than the stairs.</p>
+          <p>And the cats.</p>
+          <p>They were everywhere. They were draped across sun-warmed stone with the authority of creatures who have assessed the situation and found it satisfactory. They were tucked into doorways and arranged along walls and moving between tourists' legs with the unhurried confidence of locals watching visitors try to understand a place they never will. One was asleep directly in front of the entrance to the main church, in a patch of shade so precisely located it might have been calculated. It did not move when we stepped around it. It was not going to move.</p>
+          <p>"It's like the monkeys in South Africa," said Hadley.</p>
+          <p>It was exactly that. A different continent and a different animal, the same quality of creature-belonging, the absolute certainty of things that live somewhere versus the temporary wonder of things that have merely arrived. The monks built this monastery to transcend the world. The cats inherited it. Both were true, and Greece keeps doing this, keeps placing the sacred and the completely unimpressed side by side and waiting to see which one you notice first.</p>
+          <p>We noticed both.</p>
+          <hr class="scene-break">
+          <p>On the terrace, with the whole plain spread out below us in every direction and the other pillars standing around us now at eye level, each one with its own monastery or the ghost of one, I took out my phone.</p>
+          <p>I had a choice, though I didn't think of it that way. I was breathing hard. I had a number. I wanted to tell someone.</p>
+          <p>I typed: <em>Yes I climbed 895 steps to the top.</em></p>
+          <p>I posted it. Zander, who had been reading over my shoulder in the silent way he has, said nothing for exactly as long as it took to be satisfying.</p>
+          <p>"<em>I</em> climbed," he said.</p>
+          <p>"I counted."</p>
+          <p>"Not <em>we</em> climbed. <em>I.</em>" He looked at Hadley. "Dad climbed. We, I guess, were also there."</p>
+          <p>"Dad needs his accomplishments," said Hadley, kindly.</p>
+          <p>"I did climb it."</p>
+          <p>"You did," said Zander. "We watched."</p>
+          <p>We came back down. The town of Kalambaka waited at the base of the rock the way towns always wait at the base of impossible things, patient, practical, entirely unbothered by the proximity of the extraordinary. We found a table at a taverna and sat in the shade. A menu arrived in a plastic sleeve, photocopied rather than printed, slightly crooked, with a woodcut of the monastery on its rock, the same rock, the same monastery, now a drinks-menu item.</p>
+          <p>The Meteora Brewing Co. made a pale ale called Skiti, 0.33 litres, seven euros. Monastic beer, they called it, brewed in the shadow of the thing we had just climbed, for the people coming back down. Next to it on the table: a Mythos, in a Mythos glass, cold and golden and completely ordinary in the way that only a very cold beer after a long climb in the Greek afternoon can be.</p>
+          <p>We drank without saying much. Zander asked, half-joking, if the glass could come with us. The waiter shrugged, as in Greece small requests are so often simply granted, and a pint glass with a printed logo went into a bag and became, without anyone planning it, the kind of souvenir that means more than anything bought for the purpose.</p>
+          <p>I looked at my family around the table, tired and sunburned in the shade, passing a phone back and forth to look at the pictures.</p>
+          <p>"I should have said <em>we</em>," I said.</p>
+          <p>Nobody looked up right away. Then Kris did, with the gentle dry look she has, the one that means she has been waiting for this since about step three hundred.</p>
+          <p>"We know," she said.</p>
+          <p>"It was the four of us. I only counted it. I wouldn't have gone up if..." I stopped. That was going to turn into a sentence, and I was not ready for the sentence. I picked up the beer instead. "Eight hundred and ninety-five. For all of us."</p>
+          <p>"Say it with the glass," said Zander.</p>
+          <p>So I did. I lifted the Mythos glass, and the four of us touched it with what we had, a pale ale and two waters and something pink Hadley had ordered, and the glass rang once, thin and clear, in the shade.</p>
+          <p>Then the long drive back to Athens, the same four and a half hours in reverse, the plain going from bronze to gold to grey, a day of photographs on the phone going back and forth in the dark. We had climbed a rock together. We had a glass to prove it.</p>
+        </article>
+        <article class="chapter" id="ch06">
+          <p class="eyebrow">Six &middot; The Attica coast, 20 June</p>
+          <h2>The Buffer</h2>
+          <p>"This," said Hadley, lowering herself onto a lounger with the satisfaction of a woman who has finally found a use for her spreadsheet, "is the buffer."</p>
+          <p>She was right. It was the twentieth of June, and the itinerary said <em>Beach</em>, with nothing after it in any column, which was the first time in nine weeks that a line on that sheet had been left unfilled. She had put it there on purpose, nine weeks earlier, in a column she'd named for the things that go wrong, and it turned out she had been saving it for the thing that goes right.</p>
+          <p>I should describe where we were, because it was not what you picture when you hear <em>beach.</em> A Greek beach club is a furnished outdoor room that happens to have the Aegean for its far wall. Wooden loungers, in rows, cushioned, numbered. Ours was 8, the number taped to the umbrella pole in a strip of peeling plastic that had clearly survived several summers of sunscreen and salt. Over us a thatched roof, dense enough to cut the noon glare into something you could sit <em>inside</em> of rather than simply under. Between the chairs, a small wooden table, just big enough for a phone, a drink and a paperback menu.</p>
+          <p>Offshore, a rope marked off the swimming area, and beyond that, the detail that makes a Greek beach a Greek beach and not a postcard of one: an inflatable water park, yellow and green, anchored in the shallows. Slides and climbing walls and a floating obstacle course, entirely incongruous against the calm blue water and the haze of mountains on the far shore. Farther out, a container ship moved along the horizon at the speed container ships move, which is to say imperceptibly, and near it, closer in, a private catamaran under a bare mast cut a cleaner line. Commerce and leisure, sharing a sea, indifferent to each other's itinerary.</p>
+          <p>Kris and I took the two loungers under the thatch and did not move for a long while. I had a beer in a plastic cup, the condensation beading down the side. She had something pale and citrus-looking with a sprig of mint, one sandal half off, her bare foot on the cushion. We talked without hurry. It's a specific skill, being able to sit next to someone for an hour and say very little and have it be, unmistakably, quality time rather than its absence. We had it.</p>
+          <p>We had had twenty-some years to build it. I don't say that to be sentimental. I say it because I could feel the building under me.</p>
+          <hr class="scene-break">
+          <p>Zander walked the shoreline the way Zander does most things: unhurried, slightly removed, present in a way that reads as absence until you notice he is actually taking it all in. Barefoot in the wet sand, cap on, looking down at his own footprints more than at the view. He went all the way to the end of the beach and came back, and then he stood at the edge of the water in his swim shorts and considered the inflatable water park, in the way a man considers a decision he has already made but hasn't announced.</p>
+          <p>"He's going to do it," said Hadley, from behind a paperback.</p>
+          <p>"Do what?"</p>
+          <p>"The thing. The slide thing." She didn't look up. "He's been looking at it for twenty minutes. It's like watching someone read the ocean."</p>
+          <p>I looked at my son. He was nineteen. The water park was, as far as I could tell, designed for people between the ages of six and fourteen, and was at that moment occupied by about a dozen of them, shrieking, in the tiny life jackets they give children. He had not worn his enthusiasm in public since roughly the eighth grade. It was a fine system, and it had worked for him. You feel things privately. You reveal them only by accident.</p>
+          <p>"Should I say something?" I said to Kris.</p>
+          <p>"Let him," said Kris.</p>
+          <p>It was, once again, the whole of the advice.</p>
+          <p>I watched him stand there. He put his hands on his hips. He took his cap off and looked at it, and then he put it on again, bill backward, which in Zander is the equivalent of a man taking off his jacket before a fight. He walked into the water up to his knees, up to his waist, and began to swim, a clean, serious crawl, the way you'd swim if you intended to be taken seriously by an inflatable.</p>
+          <p>He reached the rope. He ducked under it. A small girl in a life jacket, perched at the top of the yellow slide, looked down at him with open, uncomplicated judgment.</p>
+          <p>He climbed up anyway.</p>
+          <p>I'll tell you what a father sees, from a lounger, forty yards across the water. He sees a very tall young man standing on top of a children's slide in the sun, hesitating, and in that hesitation he sees every year from nine to nineteen. Then Zander looked back toward the beach, toward us, a small figure with a hand shading his eyes, and I knew he knew we were watching. He could still turn around.</p>
+          <p>He sat down and went.</p>
+          <p>The slide was shorter than it looked and faster than it had any right to be, and he came off the end of it sideways, arms out, with a yell that carried clear across the water, and hit the sea flat on his back. Then he surfaced, and he was laughing.</p>
+          <p>It was not a performance. It was not the amused half-breath he does for a good line. It was a laugh that came all the way up from somewhere deep, helpless and loud, the laugh of a boy of nine, and I realized I had not heard it in ten years. Somewhere on the beach someone clapped. The child on the slide shrieked at him in what I can only describe as delighted contempt.</p>
+          <p>"Oh," said Hadley, and put her book down.</p>
+          <p>Kris had the real camera up. She had not asked anyone. She was kneeling at the tideline with the lens out over the water and the sun dropping toward the far shore, the light going the particular gold that photographers wait whole afternoons for, laughing while she shot, the wind pulling her hair sideways, one hand braced on the strap. Whatever she was photographing, she was fully inside it. She wasn't documenting the trip. She was chasing something the trip had briefly offered her.</p>
+          <p>I stayed on my lounger. I did not want to be anywhere else.</p>
+          <hr class="scene-break">
+          <p>We stayed until the light began to turn. Then we packed our bags, found our shoes in the sand, and walked.</p>
+          <p>The route to dinner took us along a stretch of coast road that Athens keeps mostly to itself. Tram tracks ran alongside the path, overhead wires crossing at angles that would look chaotic anywhere else and here simply looked like infrastructure doing its job. A red octagon of a stop sign, a smaller yellow warning sign beneath it with a tram in silhouette, both slightly weathered, both entirely serious in what felt, at that hour, like the emptiest corner of the city. Zander stood beneath them for a photograph, backlit by the low sun, holding his cap in one hand, his hair doing what wind off the water does to hair. He was still damp. He still had the look.</p>
+          <p>Further along, a concert billboard: a woman's face in red light, the name Koro Lova, a date in June of the following year. Then another, Judith Paganotto, the thirteenth of June, announcing a night on this same stretch of coast road that would happen long after we had all flown home.</p>
+          <p>I stopped in front of the second one.</p>
+          <p>There is something particular about walking past advertisements for a future you won't be in, in a city you're only passing through. The billboards weren't wrong to exist. Athens goes on. The tram will run whether or not you ride it. The concerts will happen and the seasons will turn and the road will fill with people who never once think about the family that walked past a stop sign here on an ordinary evening in June. This, too, is a kind of Meteora lesson, delivered without any mountains: the world keeps its own schedule, and you are, at best, a guest who happened to pass through during one of its normal weeks.</p>
+          <p>"Dad," said Hadley. "You're doing the face."</p>
+          <p>"I'm having a moment."</p>
+          <p>"Have it while walking."</p>
+          <hr class="scene-break">
+          <p>Bolivar announced itself in cut-out letters on a wall of horizontal wood planks, <em>Beach Bar &amp; Restaurant</em>, the R slightly askew where a screw had come loose at some point and nobody had gotten around to fixing it. A wooden gate stood open beside a low stucco wall. We went in.</p>
+          <p>The feta arrived the way feta arrives when a kitchen respects it: two thick wedges doused in olive oil and dusted heavily with dried oregano, a scatter of kalamata olives crowded against them like they'd been placed by someone who understood the dish needed no more architecture than that. A black knife lay across the plate. Nobody rushed to eat it. You let feta like that sit for a moment, let the oil pool, let the oregano bloom.</p>
+          <p>"Hold on," said Zander, and took out his phone.</p>
+          <p>"Obviously," said Hadley.</p>
+          <p>He took the photograph of the feta before anyone touched it. You always do. By then it had already become its own small ritual, unremarked, simply what we do, with its own rule, which was that the picture comes before the fork and whoever breaks it pays for the next round. (On another night there would be another feta, baked in an enamel dish with a dollop of orange jam and a scatter of chili, and it would be photographed before anyone touched it as well.)</p>
+          <p>The beer was Mamos, a name none of us had met before the trip and wouldn't meet again after it, a small brewery's logo on the glass, a mustached man in profile, Greek lettering beneath him that none of us could read and didn't need to. It was cold. We had walked past two billboards for concerts we'd never attend, on a coast road built for a tram we hadn't ridden, to a beach bar with a crooked R, and the beer was cold, and that was the whole of what the evening required of it.</p>
+          <p>Nothing dramatic happened at dinner. No confession, no argument. Just the four of us at a table, tired in the good way, the tiredness of a day spent horizontally near water followed by a walk that had nowhere urgent to be. Someone ordered another round. Zander told the story of the slide for the third time, and it got better, and Hadley said she had known all along, and Kris said nothing and looked at the photographs on the little screen on the back of the camera, and smiled.</p>
+          <p>This is, I have come to think, most of what a trip actually is. Not the Acropolis. Not the eight hundred and ninety-five steps. A beach club umbrella number peeling off its pole, a container ship moving too slowly to seem to move at all, a stop sign and a billboard for a concert you'll never attend, a plate of feta arriving exactly as it should. The ordinary hours between the extraordinary ones. The ones that don't make it into anyone's caption, and that you remember anyway, for no reason you could fully explain, for the rest of your life.</p>
+        </article>
+        <article class="chapter" id="ch07">
+          <p class="eyebrow">Seven &middot; The Agora and Monastiraki</p>
+          <h2>The City Under Repair</h2>
+          <p>By the end of that week I had developed a theory, and the theory was that the Parthenon was a special case.</p>
+          <p>One famous ruin, one famous crane, one very long restoration, fifty years and counting, as Hadley reminded me whenever I forgot. The rest of Athens, I assumed, was standing around finished. Somewhere in this city there had to be one old thing that nobody was fixing. I wanted to see it. I wanted proof that the building up the hill was the exception, and that the world, on the whole, held up.</p>
+          <p>I went looking for it at the Agora.</p>
+          <hr class="scene-break">
+          <p>The Temple of Hephaestus sits on a low hill above the old marketplace, and it is the best-preserved Doric temple in Greece. I know this because Hadley told me before we were through the gate, phone in hand. I noticed it was the facts she had out, not the spreadsheet.</p>
+          <p>"It survived because it was a church," she said. "For more than a thousand years. Somebody kept using it."</p>
+          <p>"That's the whole secret?"</p>
+          <p>"I think that's the whole secret. Somebody kept using it."</p>
+          <p>I let that go by, because I was looking up. The stone was a honey-pink I hadn't seen on the Acropolis, streaked rust-orange where two and a half thousand years of weather had run down it, and the columns stood in a clean, confident row against a sky so blue it looked applied. I walked the colonnade with my head tipped back and my new frames sitting properly on my nose, and I thought: <em>here.</em> One that is done.</p>
+          <p>Then I stepped inside, where the god used to live, and there was a ladder.</p>
+          <p>It was aluminum. It was the modern, extendable kind you would borrow from a neighbor, and it leaned against the inner wall as if someone had stepped out for a coffee and would be right back. There was grass growing in the floor of the room. Overhead, in the old beams, a small green plant had put down roots and was doing, as far as I could tell, extremely well.</p>
+          <p>I stood there for a while. I should have been disappointed, and what I felt instead was closer to being told the answer to a question I'd asked wrong. I had asked what finished looked like. This was it. Finished was a temple with a ladder in it and someone coming back for the ladder.</p>
+          <p>Kris was already framing the shot. She stood well back, in the grass, so that the ladder sat in the foreground and the Acropolis stood small and gold on its hill behind it, and I understood that she had been seeing it this way for days.</p>
+          <hr class="scene-break">
+          <p>We left by the fence along the Stoa of Attalos, and the cat was waiting.</p>
+          <p>It was black, entirely black, from ears to tail, sitting on the far side of a railing with its paws together like a doorman. Zander crouched at once. Hadley crouched beside him, pink tulle bunched around her knees, the floral backpack and its water bottle sliding forward on her shoulders, and both of my children reached through the railing and began to pet it. The cat leaned into Hadley's hand as if it had been meaning to for some time.</p>
+          <p>I should say what went through my mind, because I'm not proud of it.</p>
+          <p>I had made a deal in the group chat the night before we left. <em>One thing, not a person, not a passport.</em> The curse had taken my glasses over the Atlantic and I had assumed the account was settled. But a black cat, I thought, is not a thing. A black cat is an invoice.</p>
+          <p>"Maybe don't," I said.</p>
+          <p>"Dad," said Hadley, without turning around.</p>
+          <p>"I'm just saying we've paid once."</p>
+          <p>"The chat didn't say anything about cats," said Zander.</p>
+          <p>He was right. It hadn't. I stood there with the entire curse in my throat and looked at my wife.</p>
+          <p>Kris did not say anything. She lifted the camera, which was its own sentence, and aimed it not at the cat but at the two of them, and waited. The Stoa stood long and pale behind them, olive trees, a blue drink forgotten on the ledge, the Acropolis on its hill at their backs. Hadley's hair, in that light, was doing something I decided not to bring up.</p>
+          <p>I put my hands in my pockets. Then I took one out, and took my phone, and I took the photograph myself.</p>
+          <p>I want that on the record. It was me. The cat, I'm told, was not harmed by the attention, and the curse did not collect.</p>
+          <hr class="scene-break">
+          <p>On the far side of the site, the ground simply opened.</p>
+          <p>I had not been warned about the railway. One minute it was ruins and olive trees, and the next there was a cutting beside the fence, and an orange-and-silver train came sliding out of a stone arch with the soft electric sound of a Tuesday. It ran along the edge of the Agora as though the Agora were a field. A second train, covered in graffiti, stopped in front of the Stoa of Attalos with the air of a visitor who had an appointment.</p>
+          <p>"The railway got here first," Hadley said, reading. "In the eighteen hundreds. The archaeologists came later and had to work around it."</p>
+          <p>"They never moved it?"</p>
+          <p>"They never moved it."</p>
+          <p>On both sides of the track, in the old foundations, poppies and weeds had taken over what the city hadn't. The Acropolis stood beyond all of it, patient. I watched the graffitied train pull out beside ruins that had been standing for twenty-five centuries before it, and I thought: this is a city that has never once been able to stop the trains for the ruins, or the ruins for the trains.</p>
+          <hr class="scene-break">
+          <p>After that, I couldn't stop seeing it.</p>
+          <p>On the walk toward Monastiraki we passed a mid-century corner building, ochre paint peeling in long strips, shutters closed, ground floor dead. Over the sidewalk, scaffolding was cantilevered out like a bandaged arm, a phone number painted across one of the poles in case you wanted to help. There was a Starbucks awning to the left and a delivery moped to the right and a stream of people crossing the street under all of it without a glance up. Down the next block, another one. And one on the street after that.</p>
+          <p>"It's following us," said Zander.</p>
+          <p>"It's not following us," said Hadley. "It's Athens."</p>
+          <p>She was right, and I kept thinking it over. I'd gone looking for the one thing nobody was fixing, and the city's answer was that there wasn't one. A place that has been rebuilding itself for three thousand years doesn't have a finished state. It has a current state. The ladder in the temple and the pole on the corner and the crane on the hill were the same sentence, in three different accents.</p>
+          <p>I touched the side of my glasses. Armani, a few days old, still a little stiff behind the ears. I was a man in a new pair of frames, in a city in repair, with three people who had walked me through it. I didn't say so. I only noticed that I had stopped looking for the exception.</p>
+          <hr class="scene-break">
+          <p>Monastiraki Square was the evening's crowd, spread over swirled cobbles in white and rust and gray. Across it the domed mosque stood with a Greek flag on its roof, a metro sign by the steps, and above all of it, small and unmoved, the Acropolis on its hill. An Ottoman dome under the Parthenon's hill, and the crowd between them wasn't asking which century had won.</p>
+          <p>I kept walking, and somewhere between the square and dinner I stopped on a street I couldn't name now, took out my phone, and filmed twenty-three seconds of nothing.</p>
+          <p>An empty road. A leafy tree on the left. A tall stone bell tower, pale against moving clouds, a flag at the top. Beyond it, something large and cathedral-like, far down the street. A black car passed. Along the sidewalk, in a line, came a school group in matching red caps, small people walking in twos beside adults, not talking, headed somewhere to be shown something very old.</p>
+          <p>"What are you filming?" said Zander, over my shoulder.</p>
+          <p>"I don't know."</p>
+          <p>"Nothing's happening."</p>
+          <p>"I know."</p>
+          <p>He considered this, and then did the thing he does, which is to let me have it. The children went around the corner in their red caps, one after another, the way you hand a thing on. I stopped recording. I have never watched it all the way through. Nothing happens in it, and I suspect that is what I was filming.</p>
+        </article>
+        <article class="chapter" id="ch08">
+          <p class="eyebrow">Eight &middot; The Acropolis, again</p>
+          <h2>The Second Look</h2>
+          <p>Nobody goes back to the Acropolis.</p>
+          <p>You go once. You climb the marble, you get your photographs, you look up at the columns and feel the vertigo of the real thing doubling its pictures, and you check it off. Hadley's spreadsheet agreed. The Acropolis appeared in it exactly one time, in one row, in a color she had chosen to mean <em>done</em>.</p>
+          <p>"I want to go back," said Kris.</p>
+          <p>She said it the way she says most things that matter, which is as a weather report. We were finishing dinner, and she had the real camera on the table in its own bag, next to the bread.</p>
+          <p>"It's not on the list," said Hadley.</p>
+          <p>"Everything good wasn't on the list," said Zander.</p>
+          <p>Hadley looked at her phone for a moment. Then she put it face down on the table, and I knew the trip had changed her more than any of us had noticed.</p>
+          <p>I didn't say anything. I'll admit I'd have been fine with finished. I had the sharp version already, and the eight hundred and ninety-five steps, and a daughter's text to her mother. A man gets attached to a story that's complete.</p>
+          <hr class="scene-break">
+          <p>Kris didn't take us to the Acropolis first. She took us to a smaller hill across from it, up a dusty path through pines that leaned sideways out of the rock, bent by a century of wind, every one of them looking back over its shoulder.</p>
+          <p>From there the Parthenon was not above us. It stood across a valley, at eye level, the way you finally see a person you've spent a week looking up at. The gold had gone soft. The crane at the east end was a small grey line against it, and I looked for the crane first, I noticed. That was new.</p>
+          <p>Kris put the long lens on and went to work.</p>
+          <p>She did Zander first. He stood with his arms crossed over his chest and his cap low, facing the lens like a man refusing a subpoena, and I looked at my son, who had gone down a children's slide a few days earlier with a yell you could hear across the water. It might have happened to someone else. He had put the neutrality back on like a jacket.</p>
+          <p>"Do I smile?" he said.</p>
+          <p>"No," said Kris, and took it, and it was the best picture of him on the trip.</p>
+          <p>Then Hadley found a pine. It grew sideways from the slope, and she walked up to it and kicked one leg onto the trunk, exactly as her mother had done on a switchback at Meteora, a gesture I'm fairly sure she did not know she was repeating. She would not hold still. She never does. Kris got her anyway, laughing, one hand braced on the bark.</p>
+          <p>Then Hadley climbed onto a ledge of grey rock and sat with her back to the valley and the sun came in low from the side.</p>
+          <p>"Dad," said Zander.</p>
+          <p>"I saw."</p>
+          <p>Her hair, in that light, was gold. And at the edges, where the sun went through it, it was green. Not a lot. A shade. The kind of green you would notice only if you had spent a week waiting for it.</p>
+          <p>"I said," said Hadley, from the ledge, with great calm.</p>
+          <p>"You said someone's hair would turn green."</p>
+          <p>"I said it would. I didn't say whose, or how." She tilted her head and the green slid across the gold. "It's a feeling."</p>
+          <p>I'm told, by people with more information than I have, that hair does this after a week of sun and sea and Athenian tap water. I have been told this. I choose not to believe it. For the record, the prophecy was posted to a group chat at midnight, at the start of all this, and it came true on a hill in Greece, and I will not be taking questions.</p>
+          <hr class="scene-break">
+          <p>We went across at the end of the afternoon.</p>
+          <p>The Propylaea was crowded, and then it wasn't. The tour groups were herded down the marble in their color-coded lanyards, and the sun began to tilt, and the great gateway began to empty out around us. Kris stopped at the foot of it with the camera in both hands and looked up at the highest fallen block, a lintel that had come down so long ago it had been part of the landscape for centuries, lying where the light was supposed to go.</p>
+          <p>"Not yet," she said.</p>
+          <p>"Not yet what?"</p>
+          <p>"The sun's behind it." She didn't lower the camera. "It's going to come around."</p>
+          <p>I looked at my phone. I want to tell you I didn't. I did what I do. We had a table at nine, and the walk down was twenty minutes, and the light had been <em>about to happen</em> for a quarter of an hour. I had a number in my head. It was a small number. It was the number of minutes I was willing to give.</p>
+          <p>I looked at Kris. She had not moved. She was standing in the gateway of the ancient world with the real camera and nowhere on earth to be, and she was waiting for the sun, which is a thing she has done for twenty-some years, and which I have always, in some sense, been waiting on.</p>
+          <p>I put the phone away. Hadley looked at me, and then at the table at nine that she had booked, and then she sat down on the low wall and folded her hands. Zander sat beside her. Nobody said anything.</p>
+          <p>And the sun came around.</p>
+          <p>It came through a gap between the fallen lintel and the standing column, one narrow bar of gold light, and it lit the marble the color of honey and threw the columns into silhouette, and it struck Kris full in the face. She lowered the camera. She did not take a photograph. She turned her face up into it and closed her eyes, and she smiled, the smile of a woman who has been right about the light.</p>
+          <p>I took out my phone. I'd put it away, and I took it out, and the choice felt different the second time.</p>
+          <p>I took her picture. It was not a sharp picture. The flare saw to that: gold across the whole top of the frame, her face half in the glow, one hand still on the strap. It was the opposite of the screen she had held out to me the first night. It was blurred and warm and entirely wrong by every rule of the camera she was holding.</p>
+          <p>It was the most honest photograph of the entire trip.</p>
+          <hr class="scene-break">
+          <p>We stayed until the gold left the stone. Then we stood at the edge of the plateau, the four of us, with Athens spreading out beneath us in the dusk, and I looked toward the east end of the Parthenon, where the crane stood against the last of the light.</p>
+          <p>"Look at that," I said, to no one in particular. "The big structure with scaffolding."</p>
+          <p>Hadley turned. For a second I thought I'd done it again.</p>
+          <p>"It's the Parthenon, Dad," she said, very gently.</p>
+          <p>"I know. I'm just telling Mom where we are."</p>
+          <p>Kris, with her eyes still closed, laughed. "I can see it," she said.</p>
+          <p>I looked at each of them in turn, one at a time, the way I had in the doorway of the optician's on the first morning, as if checking a headcount. Kris. Zander. Hadley. Everyone was there. Everyone's hair was exactly the color it was.</p>
+          <p>I had come to Greece with a curse and a broken pair of glasses and a hope that I'd see the famous thing clearly. I had been given it, in the end, twice, and the second time I did not need the glasses at all.</p>
+          <p>The Acropolis had not changed between our two visits. We had.</p>
+        </article>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p>Eight chapters. A first draft, closed as an arc.</p>
+      <p>&copy; 2026 Barry Shields</p>
+    </div>
+  </footer>
+
+</body>
+</html>
