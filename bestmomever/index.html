@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sue Shields: Best Mom Ever</title>
+<meta name="description" content="A tribute to Sue Shields: Mom, Gigi, best mom ever.">
+<link rel="stylesheet" href="../tokens/typography.css">
+<style>
+  /*
+    Warmer take on the Ledger system: same type families, softer palette.
+    All content marked [PLACEHOLDER] is to be replaced. Photos go in ./img/
+  */
+  :root {
+    --paper: #FBF3EA;
+    --paper-raised: #FFFFFF;
+    --ink: #2A1F1B;
+    --ink-soft: #62524B;
+    --ink-faint: #94847B;
+    --rule: #EBD9C8;
+    --rose: #B4504A;
+    --rose-deep: #8E3A36;
+    --rose-soft: #F6DCD5;
+    --sun: #E9B44C;
+    --sun-soft: #FAEDC8;
+    --sage: #37493B;
+    --sage-soft: #E1E8D8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--paper); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: var(--rose-deep); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose); font-weight: 500; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; line-height: 1.1; }
+  h2 { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); margin: 10px 0 20px; }
+  section { padding: 72px 0; border-top: 1px solid var(--rule); }
+  .lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 60ch; }
+  .placeholder-note { display: inline-block; margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--sun-soft); color: #7A5A12; padding: 4px 10px; border-radius: 4px; }
+
+  /* nav */
+  nav.top { position: sticky; top: 0; z-index: 10; background: rgba(251,243,234,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
+  nav.top .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; padding-bottom: 14px; gap: 16px; }
+  nav.top .brand { font-family: var(--font-display); font-size: 1.15rem; text-decoration: none; color: var(--ink); }
+  nav.top ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
+  nav.top a.l { text-decoration: none; color: var(--ink-soft); font-size: 0.88rem; font-weight: 600; }
+  nav.top a.l:hover { color: var(--rose-deep); text-decoration: underline; }
+
+  /* hero */
+  .hero { padding: 72px 0 80px; border-top: 0; }
+  .hero .grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(3rem, 2rem + 4.5vw, 6rem); margin: 14px 0 22px; }
+  .hero h1 em { color: var(--rose); font-style: italic; }
+  .aka { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+  .chip { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--paper-raised); }
+  .chip.rose { background: var(--rose-soft); border-color: transparent; color: var(--rose-deep); }
+
+  /* photos */
+  .photo { position: relative; overflow: hidden; border-radius: 10px; background: var(--rose-soft); border: 1px solid var(--rule); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rose-deep); }
+  .photo.portrait { aspect-ratio: 4 / 5; transform: rotate(1.5deg); box-shadow: 0 14px 36px rgba(142,58,54,0.18); border: 8px solid #fff; border-radius: 4px; }
+  .photo.sq { aspect-ratio: 1; }
+  .photo.wide { aspect-ratio: 4 / 3; }
+  .photo.tall { aspect-ratio: 3 / 4; }
+
+  /* official credentials */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 36px; }
+  .stat { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; }
+  .stat .n { font-family: var(--font-display); font-size: 2.8rem; color: var(--rose); line-height: 1; }
+  .stat .t { margin-top: 10px; color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* stories */
+  .stories { display: grid; gap: 56px; margin-top: 40px; }
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .story:nth-child(even) .photo { order: 2; }
+  .story h3 { font-size: 1.8rem; margin: 8px 0 14px; }
+  .story p { color: var(--ink-soft); }
+
+  /* lessons */
+  .lessons { background: var(--paper-raised); }
+  .lessons ol { list-style: none; counter-reset: l; margin-top: 32px; display: grid; gap: 0; }
+  .lessons li { counter-increment: l; display: grid; grid-template-columns: 64px 1fr; align-items: baseline; padding: 20px 0; border-top: 1px solid var(--rule); font-family: var(--font-display); font-size: 1.5rem; line-height: 1.3; }
+  .lessons li::before { content: counter(l, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.8rem; color: var(--rose); letter-spacing: 0.1em; }
+
+  /* gallery */
+  .gallery { columns: 3 220px; column-gap: 16px; margin-top: 36px; }
+  .gallery .photo { margin-bottom: 16px; break-inside: avoid; }
+
+  /* quotes */
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 36px; }
+  blockquote { background: var(--sun-soft); border-radius: 10px; padding: 28px; font-family: var(--font-display); font-size: 1.3rem; line-height: 1.35; }
+  blockquote:nth-child(2) { background: var(--rose-soft); }
+  blockquote:nth-child(3) { background: var(--sage-soft); }
+  blockquote cite { display: block; margin-top: 16px; font-family: var(--font-mono); font-style: normal; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* letter */
+  .letter { background: var(--rose-soft); border-top: 0; }
+  .letter .card { max-width: 680px; margin: 0 auto; background: var(--paper-raised); padding: 48px; border-radius: 6px; box-shadow: 0 14px 36px rgba(142,58,54,0.14); }
+  .letter .card p { margin-bottom: 18px; font-family: var(--font-display); font-size: 1.25rem; line-height: 1.55; color: var(--ink-soft); }
+  .letter .sig { font-style: italic; color: var(--rose-deep); }
+
+  footer { padding: 40px 0 56px; text-align: center; color: var(--ink-faint); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; }
+
+  @media (max-width: 760px) {
+    .hero .grid, .story { grid-template-columns: 1fr; gap: 32px; }
+    .story:nth-child(even) .photo { order: 0; }
+    nav.top ul { display: none; }
+    section { padding: 52px 0; }
+    .letter .card { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Sue Shields</a>
+    <ul>
+      <li><a class="l" href="#credentials">Credentials</a></li>
+      <li><a class="l" href="#stories">Stories</a></li>
+      <li><a class="l" href="#lessons">Lessons</a></li>
+      <li><a class="l" href="#gallery">Photos</a></li>
+      <li><a class="l" href="#letter">Letter</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">A tribute</p>
+      <h1>Sue Shields. <em>Best mom ever.</em></h1>
+      <p class="lede">Mom to us. Gigi to the grandkids. The reason most of us turned out okay. This page is our attempt to say thank you, and to keep the good stories in one place.</p>
+      <div class="aka">
+        <span class="chip rose">Mom</span>
+        <span class="chip rose">Gigi</span>
+        <span class="chip">Sue</span>
+        <span class="chip">Undefeated</span>
+      </div>
+    </div>
+    <figure class="photo portrait">
+      <!-- Replace: <img src="img/sue-hero.jpg" alt="Sue Shields"> -->
+      <div class="ph">Hero photo<br>img/sue-hero.jpg</div>
+    </figure>
+  </div>
+</header>
+
+<section id="credentials">
+  <div class="wrap">
+    <p class="eyebrow">Official credentials</p>
+    <h2>The numbers don't lie.</h2>
+    <p class="lede">A fully verified, entirely unscientific record of a lifetime of excellence.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">1</div><div class="t">Mom of the year. Every year. No runner-up.</div></div>
+      <div class="stat"><div class="n">∞</div><div class="t">Times she said "call me when you get there."</div></div>
+      <div class="stat"><div class="n">100%</div><div class="t">Of the time, she was right. Eventually we admitted it.</div></div>
+      <div class="stat"><div class="n">Gigi</div><div class="t">Highest title she holds. Grandkids confirm.</div></div>
+    </div>
+    <span class="placeholder-note">Placeholder stats. Swap in your real ones</span>
+  </div>
+</section>
+
+<section id="stories">
+  <div class="wrap">
+    <p class="eyebrow">Stories</p>
+    <h2>Remember when…</h2>
+    <p class="lede">A few of the moments we still talk about at every family gathering.</p>
+    <div class="stories">
+      <article class="story">
+        <figure class="photo wide"><div class="ph">Story photo 1<br>img/story-1.jpg</div></figure>
+        <div>
+          <p class="eyebrow">Story one</p>
+          <h3>[Story title goes here]</h3>
+          <p>[PLACEHOLDER] Your first story will go here. A funny one works great as an opener. A few short paragraphs is plenty.</p>
+        </div>
+      </article>
+      <article class="story">
+        <figure class="photo wide"><div class="ph">Story photo 2<br>img/story-2.jpg</div></figure>
+        <div>
+          <p class="eyebrow">Story two</p>
+          <h3>[Story title goes here]</h3>
+          <p>[PLACEHOLDER] Follow with something more heartfelt, then balance it with another laugh.</p>
+        </div>
+      </article>
+      <article class="story">
+        <figure class="photo wide"><div class="ph">Story photo 3<br>img/story-3.jpg</div></figure>
+        <div>
+          <p class="eyebrow">Story three</p>
+          <h3>[Story title goes here]</h3>
+          <p>[PLACEHOLDER] A Gigi story belongs here: something the grandkids will remember.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="lessons" id="lessons">
+  <div class="wrap">
+    <p class="eyebrow">Things she taught us</p>
+    <h2>Lessons from Mom.</h2>
+    <ol>
+      <li>[PLACEHOLDER] Always bring a sweater.</li>
+      <li>[PLACEHOLDER] Write the thank-you note.</li>
+      <li>[PLACEHOLDER] Family dinner is not optional.</li>
+      <li>[PLACEHOLDER] Your real lesson goes here.</li>
+      <li>[PLACEHOLDER] And here.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">Photos</p>
+    <h2>The scrapbook.</h2>
+    <div class="gallery">
+      <figure class="photo tall"><div class="ph">img/photo-01.jpg</div></figure>
+      <figure class="photo sq"><div class="ph">img/photo-02.jpg</div></figure>
+      <figure class="photo wide"><div class="ph">img/photo-03.jpg</div></figure>
+      <figure class="photo sq"><div class="ph">img/photo-04.jpg</div></figure>
+      <figure class="photo tall"><div class="ph">img/photo-05.jpg</div></figure>
+      <figure class="photo wide"><div class="ph">img/photo-06.jpg</div></figure>
+    </div>
+  </div>
+</section>
+
+<section id="quotes">
+  <div class="wrap">
+    <p class="eyebrow">In her words</p>
+    <h2>Sue-isms.</h2>
+    <div class="quotes">
+      <blockquote>"[PLACEHOLDER] Something she always says."<cite>Sue Shields</cite></blockquote>
+      <blockquote>"[PLACEHOLDER] A line the kids repeat."<cite>Mom</cite></blockquote>
+      <blockquote>"[PLACEHOLDER] What the grandkids say about her."<cite>The grandkids on Gigi</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="letter" id="letter">
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow" style="margin-bottom:18px">A letter to Mom</p>
+      <p>Dear Mom,</p>
+      <p>[PLACEHOLDER] Your closing letter goes here. A short, honest note usually lands better than a long one.</p>
+      <p class="sig">With all our love,<br>Your family</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Made with love for Sue Shields · <a href="../">barryshieldsnc.com</a></div>
+</footer>
+
+</body>
+</html>
