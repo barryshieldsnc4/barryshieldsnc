@@ -4,8 +4,8 @@ The skill is the contents of this folder. Claude needs it as a folder named `tra
 
 ## Option 1: Claude.ai or the Claude app (upload a zip)
 
-1. **Get the files.** Download the repo (Code > Download ZIP on GitHub) and unzip it, or clone it.
-2. **Zip the `travel-novelist` folder.** Open the `skills` folder, then right-click `travel-novelist` and choose Compress (Mac) or Send to > Compressed (zipped) folder (Windows). This makes `travel-novelist.zip`.
+1. **Get the files.** On the repo's GitHub page, choose Code > Download ZIP, then unzip it. (This gives you every skill in the repo, not just this one. Step 2 picks out the one you need.) You can also clone the repo instead.
+2. **Make a new zip of just this skill.** In the unzipped repo, open the `skills` folder, then right-click `travel-novelist` and choose Compress (Mac) or Send to > Compressed (zipped) folder (Windows). This makes `travel-novelist.zip`.
 
    Or, from a terminal:
 
