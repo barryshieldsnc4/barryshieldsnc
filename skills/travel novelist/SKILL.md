@@ -19,6 +19,8 @@ Everything persistent lives in one folder the user keeps — the **packet**:
 <novel-title>/
 ├── story-bible.md      # premise, characters, POV, tone, threads
 ├── memory-log.md       # the ledger of logged memories, tagged used/unused
+├── characters/         # one sheet per named character
+│   └── <name>.md
 └── manuscript/
     ├── 01-<scene>.md
     └── ...
@@ -48,7 +50,7 @@ Keep it to one exchange if possible — the user may be at a gate or on a train.
 3. **POV & tense** — default first person past unless they choose otherwise.
 4. **Tone anchors** — 2–3 comp titles or adjectives.
 
-Write `story-bible.md` from `references/story-bible-template.md`, create the empty `memory-log.md` per `references/memory-log-format.md`, and confirm where the packet will live (Drive recommended). Do not write manuscript in the setup session unless asked.
+Create a `characters/` folder and a sheet for the protagonist from `references/character-sheet-template.md`. Write `story-bible.md` from `references/story-bible-template.md`, create the empty `memory-log.md` per `references/memory-log-format.md`, and confirm where the packet will live (Drive recommended). Do not write manuscript in the setup session unless asked.
 
 ## Log (fast lane)
 
@@ -66,7 +68,7 @@ On request, turn unused memories into manuscript:
 1. Read the bible and the unused ledger entries. Pick the memories that best serve the *next* story beat — chronology of the trip does not govern chronology of the novel. Say which memories you're drawing on and which commandment-shaped scene they'll form.
 2. If the user wants a famous novelist's manner (or you're about to write a scene and no voice is set), ask once which voice to use from `references/voices/`, or whether to use the bible's own tone anchors. Then draft the scene (default 800–1,500 words) applying `references/scene-craft.md`: five commandments present, transmutation moves applied (composite strangers into characters, relocate details, convert mishap into plot pressure).
 3. Deliver the complete scene as a manuscript file — full draft, not an outline or a fragment. State the assumptions you made inline at the top as a brief author's note, then let the user redirect.
-4. Update the packet: mark ledger entries **used → scene file**, update bible threads/characters, append any new named character to the bible.
+4. Update the packet: mark ledger entries **used → scene file**, update bible threads and the Cast index, create a character sheet for any new named character, and update the sheets of characters who appeared (appearances, current state, continuity facts).
 
 If the user asks for a full chapter or several scenes, deliver all of it in one pass. Reserve questions for genuine forks (e.g., a scene could kill off a character or not); otherwise choose and note the choice.
 
@@ -86,3 +88,4 @@ Report from the packet, briefly: word count and scene list, open threads from th
 - `references/memory-log-format.md` — ledger entry format and tagging. Read before your first Log in a session.
 - `references/scene-craft.md` — five commandments, transmutation moves, prose standards. Read before every Weave.
 - `references/voices/` — one file per novelist, describing their technique so a scene can be written in their manner. Currently: `graham-greene.md`. Read the chosen voice file before drafting. Never quote or closely imitate an author's actual sentences.
+- `references/character-sheet-template.md` — per-character sheet: want and wound, composite sources, voice, relationships, arc, appearances, continuity facts. Read when creating a character and before writing a scene with them in it.

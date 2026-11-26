@@ -27,9 +27,9 @@ Name, want, wound, how they differ from the author. What pressure
 the journey puts on them.
 
 ## Cast
-One entry per named character:
-- **Name** — role in story; built from (which logged memories/people,
-  as composites); current state in the plot.
+A short index, one line per named character, linking to their sheet in
+`characters/<name>.md` (see `character-sheet-template.md`):
+- **Name** — role in story; current state in the plot.
 
 ## Threads
 The open promises of the book. One line each, with status:
@@ -45,6 +45,6 @@ fictionalized, timeline, invented details that must stay consistent).
 ```
 
 Update discipline:
-- Every Weave updates **Cast**, **Threads**, **Structure so far**, and the `status` line.
+- Every Weave updates **Cast** (and the character sheets), **Threads**, **Structure so far**, and the `status` line.
 - Setup fills Premise, Tone, Protagonist, and frontmatter; Cast and Threads may start nearly empty. That's healthy — they grow from the ledger.
 - Never let the bible contradict the manuscript. On conflict, the manuscript wins; fix the bible.
