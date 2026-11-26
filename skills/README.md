@@ -2,7 +2,7 @@
 
 Collection of Claude skills.
 
-- [travel novelist](./travel%20novelist/SKILL.md)
+- [travel-novelist](./travel-novelist/SKILL.md)
 - [airtable coach](./airtable%20coach/SKILL.md)
 - [care coordinator](./care%20coordinator/SKILL.md)
 - [enablement mastery mapper](./enablement%20mastery%20mapper/SKILL.md)
