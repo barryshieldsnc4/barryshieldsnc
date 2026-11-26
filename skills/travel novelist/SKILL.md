@@ -64,7 +64,7 @@ The user is traveling. Speed and warmth over process. Rules:
 On request, turn unused memories into manuscript:
 
 1. Read the bible and the unused ledger entries. Pick the memories that best serve the *next* story beat — chronology of the trip does not govern chronology of the novel. Say which memories you're drawing on and which commandment-shaped scene they'll form.
-2. Draft the scene (default 800–1,500 words) applying `references/scene-craft.md`: five commandments present, transmutation moves applied (composite strangers into characters, relocate details, convert mishap into plot pressure).
+2. If the user wants a famous novelist's manner (or you're about to write a scene and no voice is set), ask once which voice to use from `references/voices/`, or whether to use the bible's own tone anchors. Then draft the scene (default 800–1,500 words) applying `references/scene-craft.md`: five commandments present, transmutation moves applied (composite strangers into characters, relocate details, convert mishap into plot pressure).
 3. Deliver the complete scene as a manuscript file — full draft, not an outline or a fragment. State the assumptions you made inline at the top as a brief author's note, then let the user redirect.
 4. Update the packet: mark ledger entries **used → scene file**, update bible threads/characters, append any new named character to the bible.
 
@@ -85,3 +85,4 @@ Report from the packet, briefly: word count and scene list, open threads from th
 - `references/story-bible-template.md` — bible structure with frontmatter. Read when running Setup or restructuring a bible.
 - `references/memory-log-format.md` — ledger entry format and tagging. Read before your first Log in a session.
 - `references/scene-craft.md` — five commandments, transmutation moves, prose standards. Read before every Weave.
+- `references/voices/` — one file per novelist, describing their technique so a scene can be written in their manner. Currently: `graham-greene.md`. Read the chosen voice file before drafting. Never quote or closely imitate an author's actual sentences.
