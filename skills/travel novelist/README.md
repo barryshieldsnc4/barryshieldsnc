@@ -34,6 +34,7 @@ The packet can live in Drive or be passed back and forth as uploaded files. The 
 - You can ask for a famous novelist's manner. The skill asks once which voice to use, or uses the story bible's own tone. Currently available: Graham Greene.
 
 ## Files
+- `INSTALL.md`: how to install the skill in Claude
 - `SKILL.md`: the full skill
 - `references/scene-craft/`: the five commandments, transmutation moves and prose standards
 - `references/story-bible-template/`: structure of the story bible
