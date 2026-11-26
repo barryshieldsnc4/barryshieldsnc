@@ -28,7 +28,7 @@ the journey puts on them.
 
 ## Cast
 A short index, one line per named character, linking to their sheet in
-`characters/<name>.md` (see `character-sheet-template.md`):
+`characters/<name>.md` (see `references/character-sheet-template/character-sheet-template.md`):
 - **Name** — role in story; current state in the plot.
 
 ## Threads

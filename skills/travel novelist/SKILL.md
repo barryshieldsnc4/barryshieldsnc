@@ -9,7 +9,7 @@ A two-speed system for writing a novel while living the trip that inspires it. *
 
 Core stance: **transmute, don't transcribe.** The trip supplies raw ore — sensory detail, strangers, friction, weather, mishaps. The novel is fiction built from that ore, not a diary with names changed. Every weave passes lived material through the story's premise, characters, and stakes.
 
-Craft framework: each scene is built on the **Story Grid five commandments** (inciting incident → progressive complication → turning point → crisis choice → resolution). Say so when weaving. See `references/scene-craft.md`.
+Craft framework: each scene is built on the **Story Grid five commandments** (inciting incident → progressive complication → turning point → crisis choice → resolution). Say so when weaving. See `references/scene-craft/scene-craft.md`.
 
 ## State: the Novel Packet
 
@@ -50,7 +50,7 @@ Keep it to one exchange if possible — the user may be at a gate or on a train.
 3. **POV & tense** — default first person past unless they choose otherwise.
 4. **Tone anchors** — 2–3 comp titles or adjectives.
 
-Create a `characters/` folder and a sheet for the protagonist from `references/character-sheet-template.md`. Write `story-bible.md` from `references/story-bible-template.md`, create the empty `memory-log.md` per `references/memory-log-format.md`, and confirm where the packet will live (Drive recommended). Do not write manuscript in the setup session unless asked.
+Create a `characters/` folder and a sheet for the protagonist from `references/character-sheet-template/character-sheet-template.md`. Write `story-bible.md` from `references/story-bible-template/story-bible-template.md`, create the empty `memory-log.md` per `references/memory-log-format/memory-log-format.md`, and confirm where the packet will live (Drive recommended). Do not write manuscript in the setup session unless asked.
 
 ## Log (fast lane)
 
@@ -66,7 +66,7 @@ The user is traveling. Speed and warmth over process. Rules:
 On request, turn unused memories into manuscript:
 
 1. Read the bible and the unused ledger entries. Pick the memories that best serve the *next* story beat — chronology of the trip does not govern chronology of the novel. Say which memories you're drawing on and which commandment-shaped scene they'll form.
-2. If the user wants a famous novelist's manner (or you're about to write a scene and no voice is set), ask once which voice to use from `references/voices/`, or whether to use the bible's own tone anchors. Then draft the scene (default 800–1,500 words) applying `references/scene-craft.md`: five commandments present, transmutation moves applied (composite strangers into characters, relocate details, convert mishap into plot pressure).
+2. If the user wants a famous novelist's manner (or you're about to write a scene and no voice is set), ask once which voice to use from `references/voices/`, or whether to use the bible's own tone anchors. Then draft the scene (default 800–1,500 words) applying `references/scene-craft/scene-craft.md`: five commandments present, transmutation moves applied (composite strangers into characters, relocate details, convert mishap into plot pressure).
 3. Deliver the complete scene as a manuscript file — full draft, not an outline or a fragment. State the assumptions you made inline at the top as a brief author's note, then let the user redirect.
 4. Update the packet: mark ledger entries **used → scene file**, update bible threads and the Cast index, create a character sheet for any new named character, and update the sheets of characters who appeared (appearances, current state, continuity facts).
 
@@ -84,8 +84,8 @@ Report from the packet, briefly: word count and scene list, open threads from th
 
 ## Reference files
 
-- `references/story-bible-template.md` — bible structure with frontmatter. Read when running Setup or restructuring a bible.
-- `references/memory-log-format.md` — ledger entry format and tagging. Read before your first Log in a session.
-- `references/scene-craft.md` — five commandments, transmutation moves, prose standards. Read before every Weave.
+- `references/story-bible-template/story-bible-template.md` — bible structure with frontmatter. Read when running Setup or restructuring a bible.
+- `references/memory-log-format/memory-log-format.md` — ledger entry format and tagging. Read before your first Log in a session.
+- `references/scene-craft/scene-craft.md` — five commandments, transmutation moves, prose standards. Read before every Weave.
 - `references/voices/` — one file per novelist, describing their technique so a scene can be written in their manner. Currently: `graham-greene.md`. Read the chosen voice file before drafting. Never quote or closely imitate an author's actual sentences.
-- `references/character-sheet-template.md` — per-character sheet: want and wound, composite sources, voice, relationships, arc, appearances, continuity facts. Read when creating a character and before writing a scene with them in it.
+- `references/character-sheet-template/character-sheet-template.md` — per-character sheet: want and wound, composite sources, voice, relationships, arc, appearances, continuity facts. Read when creating a character and before writing a scene with them in it.
