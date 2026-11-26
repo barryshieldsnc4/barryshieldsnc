@@ -5,14 +5,27 @@ The skill is the contents of this folder. Claude needs it as a folder named `tra
 ## Option 1: Claude.ai or the Claude app (upload a zip)
 
 1. **Get the files.** Download the repo (Code > Download ZIP on GitHub) and unzip it, or clone it.
-2. **Zip it.** Zip the `skills/travel-novelist` folder itself, so the zip contains one top-level folder with `SKILL.md` and `references/` inside it:
+2. **Zip the `travel-novelist` folder.** Open the `skills` folder, then right-click `travel-novelist` and choose Compress (Mac) or Send to > Compressed (zipped) folder (Windows). This makes `travel-novelist.zip`.
+
+   Or, from a terminal:
 
    ```bash
    cd skills
    zip -r travel-novelist.zip travel-novelist
    ```
 
-   The zip must not have `SKILL.md` loose at the top level, and it must not be wrapped in an extra folder.
+   When you open the zip, you should see a single folder, `travel-novelist`, with `SKILL.md` inside it:
+
+   ```
+   travel-novelist.zip
+   └── travel-novelist/
+       ├── SKILL.md
+       ├── README.md
+       ├── INSTALL.md
+       └── references/
+   ```
+
+   Don't zip the whole repo, and don't zip the files inside the folder without the folder itself.
 3. **Upload it.** In Claude, open Settings, go to the Skills section (under Capabilities), and choose to upload a skill. Select `travel-novelist.zip`.
 4. **Turn it on.** Make sure the skill's toggle is enabled.
 
@@ -51,6 +64,6 @@ The skill keeps your novel in a folder called the packet (story bible, memory lo
 
 ## Troubleshooting
 
-- **Upload is rejected:** check that the zip has one top-level `travel-novelist` folder with `SKILL.md` directly inside.
+- **Upload is rejected:** check that opening the zip shows a `travel-novelist` folder with `SKILL.md` inside it, as in the picture in step 2.
 - **The skill doesn't trigger:** confirm it's switched on in Settings, then start a new conversation. Mentioning the novel or logging a trip memory should trigger it.
 - **Changes don't show up:** you're probably still on the old uploaded version. Re-upload the zip.
